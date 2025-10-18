@@ -6,19 +6,19 @@ const Category = () => {
   const [categories, setCategories] = useState([
     {
       title: "Concert",
-      img: "/concert.jpg",
+      img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
     },
     {
       title: "Sports",
-      img: "/sports.jpg",
+      img: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1323",
     },
     {
       title: "Theater",
-      img: "theater.jpg",
+      img: "https://images.unsplash.com/photo-1615414047026-802692414b79?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169",
     },
     {
-      title: "Family",
-      img: "family.jpg",
+      title: "Parks",
+      img: "https://images.unsplash.com/photo-1620087148830-a51b68b96e15?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
     },
   ]);
 
