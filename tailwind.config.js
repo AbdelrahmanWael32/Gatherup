@@ -10,7 +10,15 @@ module.exports = withMT({
     "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          primary: "#2C9CF0",
+          secondary: "#667080",
+          dark: "#04092C",
+        },
+      },
+    },
   },
   plugins: [],
 });
