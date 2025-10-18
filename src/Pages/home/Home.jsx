@@ -1,7 +1,9 @@
+import CarouselHome from "./CarouselHome";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="w-full">
+      <CarouselHome></CarouselHome>
     </div>
   );
 };
