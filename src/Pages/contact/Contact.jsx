@@ -3,7 +3,7 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 const Contact = () => {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-4 p-8">
-      <h1 className="font-extrabold text-3xl">Contact us</h1>
+      <h1 className="font-extrabold text-3xl text-brand-primary">Contact us</h1>
       <p> fill in this form and we will get back to you.</p>
 
       <Card color="transparent" shadow={false}>
@@ -20,7 +20,7 @@ const Contact = () => {
             <Textarea label="Message" />
           </div>
 
-          <Button className="mt-6" fullWidth>
+          <Button type="submit" className="mt-6 bg-brand-primary" fullWidth>
             Send
           </Button>
         </form>
@@ -29,4 +29,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Contact;  
