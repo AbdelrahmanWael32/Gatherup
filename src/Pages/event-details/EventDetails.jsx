@@ -20,7 +20,6 @@ const EventDetails = () => {
       description: `Experience the thrill of live basketball at the Youth Basketball Championship 2025!
                      Watch the best young players battle it out in an energetic and competitive atmosphere filled with excitement, cheers, and music.
                      Bring your friends or family and enjoy an unforgettable sporting event that celebrates talent, teamwork, and passion.`,
-      price: 100,
     },
     {
       id: 2,

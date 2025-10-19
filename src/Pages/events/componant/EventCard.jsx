@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   CardHeader,
@@ -6,8 +5,21 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
-const EventCard = ({ event: { id, title, price, image, date, location } }) => {
+import { Link, useNavigate } from "react-router-dom";
+
+const EventCard = ({ event, setSelectedEvent }) => {
+  const { id, title, price, image, date, location } = event;
+  const navigate = useNavigate();
+
+  const handleBook = () => {
+    setSelectedEvent((prev) => {
+      const exists = prev.find((e) => e.id === id);
+      if (exists) return prev;
+      return [...prev, { ...event, quantity: 1 }];
+    });
+    navigate("/my-tickets");
+  };
+
   return (
     <Card className="w-full md:max-h-[15rem] max-w-[48rem] flex-col md:flex-row hover:shadow-xl transform hover:-translate-y-2 duration-300">
       <CardHeader
@@ -21,23 +33,26 @@ const EventCard = ({ event: { id, title, price, image, date, location } }) => {
           className="h-full max-h-[20rem] w-full object-cover"
         />
       </CardHeader>
+
       <CardBody>
         <Typography variant="h4" className="mb-2 text-brand-dark">
           {title}
         </Typography>
-        <Typography color="gray" className=" font-normal">
-          📅{date}
+
+        <Typography color="gray" className="font-normal">
+          📅 {date}
         </Typography>
         <Typography color="gray" className="font-normal">
-          📍{location}
+          📍 {location}
         </Typography>
         <Typography color="gray" className="mb-8 font-normal">
           💰 {price} EGP
         </Typography>
+
         <Typography className="flex justify-center gap-[2rem]">
-          <Link to={"/book-tickets"}>
-            <Button color="blue">book now</Button>
-          </Link>
+          <Button color="blue" onClick={handleBook}>
+            Book Now
+          </Button>
 
           <Link to={`/event-details/${id}`}>
             <Button

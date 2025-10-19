@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EventCard from "./componant/EventCard";
-const Events = () => {
+const Events = ({ setSelectedEvent }) => {
   const [event] = useState([
     {
       id: 1,
@@ -30,13 +30,17 @@ const Events = () => {
   return (
     <div>
       <section className="py-16">
-        <h1 className="max-w-4xl mx-auto text-4xl font-normal text-[#04092c] mb-3">
+        <h1 className="max-w-4xl mx-auto text-4xl font-normal text-brand-dark mb-3">
           Find your next experience
         </h1>
       </section>
       <div className="flex flex-col gap-[3rem] justify-center items-center px-4">
         {event.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <EventCard
+            key={event.id}
+            event={event}
+            setSelectedEvent={setSelectedEvent}
+          />
         ))}
       </div>
     </div>
