@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./Components/footer/Footer";
 import Header from "./Components/header/Header";
@@ -13,9 +14,12 @@ import Profile from "./Pages/profile/Profile";
 import Signup from "./Pages/signup/Signup";
 
 const App = () => {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="w-full">
-      <Header></Header>
+    <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+
 
       <Routes>
         <Route path="/about" element={<About />}></Route>
@@ -27,7 +31,7 @@ const App = () => {
           element={<EventDetails></EventDetails>}
         ></Route>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+     <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/my-tickets" element={<MyTickets />}></Route>
         <Route path="/profile" element={<Profile></Profile>}></Route>
         <Route path="/sign-up" element={<Signup></Signup>}></Route>
