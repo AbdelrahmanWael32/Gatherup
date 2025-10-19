@@ -6,8 +6,19 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
-const EventCard = ({ event: { id, title, price, image, date } }) => {
+import { Link, useNavigate } from "react-router-dom";
+const EventCard = ({ event, setSelectedEvent }) => {
+  const { id, title, price, image, date } = event;
+   const navigate = useNavigate();
+
+  const handleBook = () => {
+  setSelectedEvent((prev) => {
+    const exists = prev.find((e) => e.id === id);
+    if (exists) return prev;
+    return [...prev, { ...event, quantity: 1 }];
+  });
+  navigate("/my-tickets");
+};
   return (
     <Card className="w-full max-w-[48rem] flex-col sm:flex-row hover:shadow-xl transform hover:-translate-y-2 duration-300">
       <CardHeader
@@ -32,7 +43,7 @@ const EventCard = ({ event: { id, title, price, image, date } }) => {
           Tickets start from {price} EGP
         </Typography>
         <Typography className="flex justify-center gap-[2rem]">
-          <Button color="blue">book now</Button>
+          <Button color="blue" onClick={handleBook}>Book Now</Button>
           <Link to={`/event-details/${id}`}>
             <Button variant="text" className="flex items-center gap-2">
               View Details
