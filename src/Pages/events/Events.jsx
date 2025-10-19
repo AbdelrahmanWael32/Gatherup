@@ -1,27 +1,30 @@
-import EventCard from "../../Components/eventCard/EventCard";
 import { useState } from "react";
+import EventCard from "./componant/EventCard";
 const Events = () => {
   const [event] = useState([
     {
       id: 1,
-      image: "./public/event3.png",
-      title: "Tech & Innovation Expo",
-      price: 200,
-      date: "May 8, 2025",
+      image: "./sport1.png",
+      title: "Youth Basketball Championship",
+      price: 100,
+      date: "December 15, 2025",
+      location: "Al Gezira Sports Club – Cairo",
     },
     {
       id: 2,
-      image: "./public/event2.png",
+      image: "./event2.png",
       title: "Outdoor Movie Night",
       price: 50,
       date: "October 3, 2025",
+      location: "Zed Park – Sheikh Zayed, Giza",
     },
     {
       id: 3,
-      image: "./public/event4.png",
-      title: "Global Music & Culture Festival",
-      price: 300,
-      date: "September 15, 2025",
+      image: "./event4.png",
+      title: "Summer Beats Live Concert",
+      price: 250,
+      date: "August 8, 2025",
+      location: "Cairo Festival City Amphitheater – New Cairo",
     },
   ]);
   return (
