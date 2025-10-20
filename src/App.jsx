@@ -25,10 +25,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/book-tickets" element={<BookTickets />} />
         <Route path="/contact" element={<Contact />} />
-        <Route
-          path="/events"
-          element={<Events/>}
-        />
+        <Route path="/events" element={<Events />} />
         <Route
           path="/event-details/:id"
           element={<EventDetails setSelectedEvent={setSelectedEvent} />}
@@ -47,7 +44,7 @@ const App = () => {
             />
           }
         />
-        
+
         <Route path="/sign-up" element={<Signup />} />
       </Routes>
 
