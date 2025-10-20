@@ -12,6 +12,7 @@ import Events from "./Pages/events/Events";
 import EventDetails from "./Pages/event-details/EventDetails";
 import Profile from "./Pages/profile/Profile";
 import Signup from "./Pages/signup/Signup";
+import NotFound from "./Pages/notFound/NotFound";
 
 const App = () => {
   const [selectedEvent, setSelectedEvent] = useState([]);
@@ -46,6 +47,7 @@ const App = () => {
         />
 
         <Route path="/sign-up" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />
