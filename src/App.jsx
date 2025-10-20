@@ -27,9 +27,12 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route
           path="/events"
-          element={<Events setSelectedEvent={setSelectedEvent} />}
+          element={<Events/>}
         />
-        <Route path="/event-details/:id" element={<EventDetails />} />
+        <Route
+          path="/event-details/:id"
+          element={<EventDetails setSelectedEvent={setSelectedEvent} />}
+        />
         <Route path="/" element={<Home />} />
         <Route
           path="/login"

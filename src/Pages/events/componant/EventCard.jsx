@@ -5,21 +5,9 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const EventCard = ({ event, setSelectedEvent }) => {
-  const { id, title, price, image, date, location } = event;
-  const navigate = useNavigate();
-
-  const handleBook = () => {
-    setSelectedEvent((prev) => {
-      const exists = prev.find((e) => e.id === id);
-      if (exists) return prev;
-      return [...prev, { ...event, quantity: 1 }];
-    });
-    navigate("/my-tickets");
-  };
-
+const EventCard = ({ event: { id, title, price, image, date, location } }) => {
   return (
     <Card className="w-full md:max-h-[15rem] max-w-[48rem] flex-col md:flex-row hover:shadow-xl transform hover:-translate-y-2 duration-300">
       <CardHeader
@@ -34,31 +22,24 @@ const EventCard = ({ event, setSelectedEvent }) => {
         />
       </CardHeader>
 
-      <CardBody>
+      <CardBody className="md:w-3/5">
         <Typography variant="h4" className="mb-2 text-brand-dark">
           {title}
         </Typography>
 
         <Typography color="gray" className="font-normal">
-          📅 {date}
+           {date}
         </Typography>
         <Typography color="gray" className="font-normal">
-          📍 {location}
+           {location}
         </Typography>
         <Typography color="gray" className="mb-8 font-normal">
-          💰 {price} EGP
+          Start From {price} EGP
         </Typography>
 
-        <Typography className="flex justify-center gap-[2rem]">
-          <Button color="blue" onClick={handleBook}>
-            Book Now
-          </Button>
-
+        <Typography className="flex justify-end ">
           <Link to={`/event-details/${id}`}>
-            <Button
-              variant="text"
-              className="flex items-center gap-2 text-blue-600"
-            >
+            <Button variant="text" className="flex  gap-2 text-blue-600">
               View Details
               <svg
                 xmlns="http://www.w3.org/2000/svg"
