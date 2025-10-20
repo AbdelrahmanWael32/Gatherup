@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category: { title, img } }) => {
   return (
@@ -15,7 +16,9 @@ const CategoryCard = ({ category: { title, img } }) => {
       </CardHeader>
       <CardBody></CardBody>
       <CardFooter className="pt-0 flex justify-center">
-        <Button className="bg-brand-dark">{title}</Button>
+        <Button className="bg-brand-dark">
+          <Link to={`/events/category/${title}`}>{title}</Link>{" "}
+        </Button>
       </CardFooter>
     </Card>
   );

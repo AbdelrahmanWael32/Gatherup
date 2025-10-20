@@ -1,4 +1,5 @@
 import { Carousel, Typography, Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const CarouselHome = () => {
   return (
@@ -22,7 +23,7 @@ const CarouselHome = () => {
 
               <div className="flex justify-center gap-2">
                 <Button size="lg" color="white">
-                  Book Now
+                  <Link to="/events">Book Now</Link>
                 </Button>
               </div>
             </div>
@@ -46,7 +47,7 @@ const CarouselHome = () => {
 
               <div className="flex justify-center gap-2">
                 <Button size="lg" color="white">
-                  Book Now
+                  <Link to="/events">Book Now</Link>
                 </Button>
               </div>
             </div>
