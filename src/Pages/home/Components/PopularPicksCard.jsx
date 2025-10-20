@@ -61,9 +61,11 @@ const PopularPicksCard = ({
             </div>
           </div>
           <div>
-            <Button className="border-brand-primary border-2 rounded-full p-4 text-brand-primary bg-white">
-              <Link to={`/event-details/${id}`}>View details</Link>
-            </Button>
+            <Link to={`/event-details/${id}`}>
+              <Button className="border-brand-primary border-2 rounded-full p-4 text-brand-primary bg-white">
+                View details
+              </Button>
+            </Link>
           </div>
         </div>
       </CardBody>

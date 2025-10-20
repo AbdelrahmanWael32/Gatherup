@@ -16,9 +16,9 @@ const CategoryCard = ({ category: { title, img } }) => {
       </CardHeader>
       <CardBody></CardBody>
       <CardFooter className="pt-0 flex justify-center">
-        <Button className="bg-brand-dark">
-          <Link to={`/events`}>{title}</Link>{" "}
-        </Button>
+        <Link to={`/events`}>
+          <Button className="bg-brand-dark">{title}</Button>
+        </Link>
       </CardFooter>
     </Card>
   );
