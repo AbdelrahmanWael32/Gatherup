@@ -151,6 +151,7 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
             {event.description}
           </p>
           <p className="text-brand-secondary text-lg mb-2 mt-7">
+
             {event.date}
           </p>
           <p className="text-brand-secondary text-lg mb-2">{event.time}</p>

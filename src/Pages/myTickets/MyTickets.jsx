@@ -29,7 +29,7 @@ const MyTickets = ({ selectedEvent, setSelectedEvent }) => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-extrabold text-brand-primary">Your Tickets</h1>
+      <h1 className="text-2xl font-extrabold text-brand-dark">Your Tickets</h1>
 
       {selectedEvent.map((event) => (
         <div
