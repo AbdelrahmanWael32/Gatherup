@@ -14,7 +14,7 @@ const Events = ({ setSelectedEvent }) => {
       id: 2,
       image: "./event2.png",
       title: "Outdoor Movie Night",
-      price: 50,
+      price: 75,
       date: "October 3, 2025",
       location: "Zed Park – Sheikh Zayed, Giza",
     },
