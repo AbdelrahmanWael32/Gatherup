@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-4 p-8">
+    <div className="w-full flex flex-col justify-center items-center gap-4 p-20">
       <h1 className="font-extrabold text-3xl text-brand-primary">About Gatherup</h1>
       <p className=" self-start  ">
         Gatherup is an interactive platform that brings local events closer to

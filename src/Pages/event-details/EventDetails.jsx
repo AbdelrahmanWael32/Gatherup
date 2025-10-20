@@ -46,7 +46,7 @@ const EventDetails = ({ setSelectedEvent }) => {
       title: "Outdoor Movie Night",
       price: 50,
       date: "October 3, 2025",
-      time: "🕒 7:00 PM – 11:00 PM",
+      time: " 7:00 PM – 11:00 PM",
       Location: "Zed Park – Sheikh Zayed, Giza",
       description: `Enjoy a magical night under the stars! 
 Join us for an Outdoor Movie Night featuring one of the latest blockbuster films in a cozy open-air setting.
@@ -67,7 +67,7 @@ Perfect for families, couples, and friends who want to unwind and enjoy a cinema
       price: 250,
       date: "August 8, 2025",
       Location: "Cairo Festival City Amphitheater – New Cairo",
-      time: "🕒 8:00 PM",
+      time: " 8:00 PM",
       description: `Get ready for an unforgettable night of music, lights, and energy! 
 Join us at the *Summer Beats Live Concert 2025*, featuring some of Egypt’s top pop and indie artists performing live on stage.
 Enjoy the electric atmosphere, amazing light shows, and a full night of entertainment under the summer sky. 
@@ -151,16 +151,16 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
             {event.description}
           </p>
           <p className="text-brand-secondary text-lg mb-2 mt-7">
-            📅{event.date}
+            {event.date}
           </p>
           <p className="text-brand-secondary text-lg mb-2">{event.time}</p>
           <p className="text-brand-secondary text-lg mb-2">
-            📍{event.Location}
+            {event.Location}
           </p>
 
           <div className="w-full max-w-lg mt-6">
             <h2 className="text-2xl font-semibold text-[#04092c] mb-3">
-              🎟️ Ticket Categories
+               Ticket Categories
             </h2>
 
             {event.ticketCategories.map((ticket, index) => (
@@ -171,7 +171,7 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
               >
                 <div className="transition-opacity duration-300 group-hover:opacity-0 text-center">
                   <p className="text-lg font-medium text-brand-dark">
-                    💺 {ticket.type} – 💰 {ticket.price} EGP
+                     {ticket.type} –  {ticket.price} EGP
                   </p>
                   <p className="text-brand-secondary mt-1">{ticket.details}</p>
                 </div>
@@ -195,7 +195,7 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
           onClick={() => navigate(-1)}
           className="mt-2 text-blue-600"
         >
-          ← Go Back
+           Go Back
         </Button>
       </div>
     </div>

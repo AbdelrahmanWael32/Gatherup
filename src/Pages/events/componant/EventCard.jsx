@@ -28,13 +28,13 @@ const EventCard = ({ event: { id, title, price, image, date, location } }) => {
         </Typography>
 
         <Typography color="gray" className="font-normal">
-          📅 {date}
+           {date}
         </Typography>
         <Typography color="gray" className="font-normal">
-          📍 {location}
+           {location}
         </Typography>
         <Typography color="gray" className="mb-8 font-normal">
-          💰Start From {price} EGP
+          Start From {price} EGP
         </Typography>
 
         <Typography className="flex justify-end ">
