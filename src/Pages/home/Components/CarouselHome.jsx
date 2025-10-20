@@ -22,9 +22,11 @@ const CarouselHome = () => {
               </Typography>
 
               <div className="flex justify-center gap-2">
-                <Button size="lg" color="white">
-                  <Link to="/events">Book Now</Link>
-                </Button>
+                <Link to="/events">
+                  <Button size="lg" color="white">
+                    Book Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -46,9 +48,11 @@ const CarouselHome = () => {
               </Typography>
 
               <div className="flex justify-center gap-2">
-                <Button size="lg" color="white">
-                  <Link to="/events">Book Now</Link>
-                </Button>
+                <Link to="/events">
+                  <Button size="lg" color="white">
+                    Book Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
