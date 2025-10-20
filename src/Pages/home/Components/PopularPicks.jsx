@@ -10,7 +10,7 @@ const PopularPicks = () => {
       time: "Sun • 10:00am",
       title: "Elements Music and Arts Festival - Sunday",
       location: "Pocono Raceway",
-      img: "", // add image src later
+      img: "/sport1.png",
       rating: 4.8,
     },
     {
@@ -19,7 +19,7 @@ const PopularPicks = () => {
       time: "Sun • 11:00am",
       title: "Orange County Fair - Admission",
       location: "Orange County Fair and Event Center",
-      img: "", // add image src later
+      img: "/event2.png",
       rating: 4.6,
     },
     {
@@ -28,7 +28,7 @@ const PopularPicks = () => {
       time: "Sun • 11:00am",
       title: "Audien (21+ Event)",
       location: "AYU Dayclub",
-      img: "", // add image src later
+      img: "/event3.png",
       rating: 4.9,
     },
   ]);

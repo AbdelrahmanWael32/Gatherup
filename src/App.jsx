@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./Components/footer/Footer";
 import Header from "./Components/header/Header";
@@ -13,31 +14,41 @@ import Profile from "./Pages/profile/Profile";
 import Signup from "./Pages/signup/Signup";
 
 const App = () => {
+  const [selectedEvent, setSelectedEvent] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="w-full">
-      <Header></Header>
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <Routes>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/book-tickets" element={<BookTickets />}></Route>
-        <Route path="/contact" element={<Contact></Contact>}></Route>
-        <Route path="/events" element={<Events></Events>}></Route>
-        <Route
-          path="/events/category/:category"
-          element={<Events></Events>}
-        ></Route>
+        <Route path="/about" element={<About />} />
+        <Route path="/book-tickets" element={<BookTickets />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/events" element={<Events />} />
         <Route
           path="/event-details/:id"
-          element={<EventDetails></EventDetails>}
-        ></Route>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/my-tickets" element={<MyTickets />}></Route>
-        <Route path="/profile" element={<Profile></Profile>}></Route>
-        <Route path="/sign-up" element={<Signup></Signup>}></Route>
+          element={<EventDetails setSelectedEvent={setSelectedEvent} />}
+        />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route
+          path="/my-tickets"
+          element={
+            <MyTickets
+              selectedEvent={selectedEvent}
+              setSelectedEvent={setSelectedEvent}
+            />
+          }
+        />
+
+        <Route path="/sign-up" element={<Signup />} />
       </Routes>
 
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
