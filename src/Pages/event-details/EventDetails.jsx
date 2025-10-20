@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
 
-const EventDetails = () => {
+const EventDetails = ({ setSelectedEvent }) => {
   const [event, setEvent] = useState(null);
   const [eventError, setEventError] = useState("");
   const navigate = useNavigate();
@@ -20,6 +19,26 @@ const EventDetails = () => {
       description: `Experience the thrill of live basketball at the Youth Basketball Championship 2025!
                      Watch the best young players battle it out in an energetic and competitive atmosphere filled with excitement, cheers, and music.
                      Bring your friends or family and enjoy an unforgettable sporting event that celebrates talent, teamwork, and passion.`,
+      ticketCategories: [
+        {
+          type: "Standard Seat",
+          price: 100,
+          details:
+            "Comfortable seats with a great view of the court. Perfect for casual spectators.",
+        },
+        {
+          type: "Premium Seat",
+          price: 180,
+          details:
+            "Closer to the action! Enjoy a better view near the court and access to the refreshment zone.",
+        },
+        {
+          type: "VIP Experience",
+          price: 300,
+          details:
+            "Exclusive front-row seats, complimentary snacks and drinks, and access to the VIP lounge.",
+        },
+      ],
     },
     {
       id: 2,
@@ -33,6 +52,13 @@ const EventDetails = () => {
 Join us for an Outdoor Movie Night featuring one of the latest blockbuster films in a cozy open-air setting.
 Relax on bean bags or picnic chairs, grab some popcorn , and enjoy the fresh evening breeze with your loved ones.
 Perfect for families, couples, and friends who want to unwind and enjoy a cinematic experience under the open sky.`,
+      ticketCategories: [
+        {
+          type: "Regular Seat",
+          price: 75,
+          details: "Standard area with a good view of the screen.",
+        },
+      ],
     },
     {
       id: 3,
@@ -46,6 +72,26 @@ Perfect for families, couples, and friends who want to unwind and enjoy a cinema
 Join us at the *Summer Beats Live Concert 2025*, featuring some of Egypt’s top pop and indie artists performing live on stage.
 Enjoy the electric atmosphere, amazing light shows, and a full night of entertainment under the summer sky. 
 Perfect for music lovers, friends, and anyone who wants to dance, sing, and celebrate the season in style! `,
+      ticketCategories: [
+        {
+          type: "General Admission",
+          price: 250,
+          details:
+            "Access to the standing area with a great view of the main stage.",
+        },
+        {
+          type: "Golden Circle",
+          price: 400,
+          details:
+            "Closer to the stage, with access to a dedicated bar and rest area.",
+        },
+        {
+          type: "VIP Experience",
+          price: 600,
+          details:
+            "Front-row seating, exclusive entrance, free snacks and drinks, and meet & greet with the performers.",
+        },
+      ],
     },
   ];
 
@@ -73,6 +119,25 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
   if (!event) {
     return <p className="text-center text-gray-500 mt-12">Loading event...</p>;
   }
+  const handleBook = (ticket) => {
+    setSelectedEvent((prev) => {
+      const exists = prev.find(
+        (e) => e.id === event.id && e.selectedType === ticket.type
+      );
+      if (exists) return prev;
+      return [
+        ...prev,
+        {
+          ...event,
+          selectedType: ticket.type,
+          selectedPrice: ticket.price,
+          quantity: 1,
+        },
+      ];
+    });
+
+    navigate("/my-tickets");
+  };
 
   return (
     <div className=" py-12 px-6">
@@ -92,18 +157,30 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
           <p className="text-brand-secondary text-lg mb-2">
             📍{event.Location}
           </p>
-          <p className="text-brand-secondary text-lg mb-2">💰{event.price}</p>
-          <div className="flex justify-between">
-            <Link to={"/book-tickets"}>
-              <Button color="blue">book now</Button>
-            </Link>
-            <Button
-              variant="text"
-              onClick={() => navigate(-1)}
-              className="mt-2 text-blue-600"
-            >
-              ← Go Back
-            </Button>
+
+          <div className="w-full max-w-lg mt-6">
+            <h2 className="text-2xl font-semibold text-[#04092c] mb-3">
+              🎟️ Ticket Categories
+            </h2>
+
+            {event.ticketCategories.map((ticket, index) => (
+              <div
+                key={index}
+                onClick={() => handleBook(ticket)}
+                className="mb-4 border rounded-xl p-4 shadow-md relative overflow-hidden group transition-all duration-300 cursor-pointer hover:bg-brand-primary hover:shadow-md flex items-center justify-center"
+              >
+                <div className="transition-opacity duration-300 group-hover:opacity-0 text-center">
+                  <p className="text-lg font-medium text-brand-dark">
+                    💺 {ticket.type} – 💰 {ticket.price} EGP
+                  </p>
+                  <p className="text-brand-secondary mt-1">{ticket.details}</p>
+                </div>
+
+                <div className="absolute flex items-center justify-center opacity-0 group-hover:opacity-100  duration-500">
+                  <span className="text-white text-xl font-bold">Book Now</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <img
@@ -111,6 +188,15 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
           alt={event.title}
           className="w-[90%] md:w-[50%] max-h-[350px] object-cover rounded-2xl mb-6 shadow-lg mx-auto "
         />
+      </div>
+      <div className="flex  justify-end">
+        <Button
+          variant="text"
+          onClick={() => navigate(-1)}
+          className="mt-2 text-blue-600"
+        >
+          ← Go Back
+        </Button>
       </div>
     </div>
   );

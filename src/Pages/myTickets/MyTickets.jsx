@@ -10,7 +10,7 @@ const MyTickets = ({ selectedEvent, setSelectedEvent }) => {
     return <NoEvents />;
   }
 
-  const updateQuantity = (id, delta) => {
+  const updateQuantity = (id,selectedType, delta) => {
     setSelectedEvent((prev) =>
       prev
         .map((event) =>
@@ -23,7 +23,7 @@ const MyTickets = ({ selectedEvent, setSelectedEvent }) => {
   };
 
   const total = selectedEvent.reduce(
-    (sum, e) => sum + e.price * (e.quantity || 1),
+    (sum, e) => sum + (e.selectedPrice || e.price) * (e.quantity || 1),
     0
   );
 
@@ -33,7 +33,7 @@ const MyTickets = ({ selectedEvent, setSelectedEvent }) => {
 
       {selectedEvent.map((event) => (
         <div
-          key={event.id}
+          key={`${event.id}-${event.selectedType}`}
           className="border-b-4 p-5 flex flex-col sm:flex-row justify-between items-center"
         >
           <div>
@@ -43,28 +43,28 @@ const MyTickets = ({ selectedEvent, setSelectedEvent }) => {
               alt="card-image"
               className="w-40 object-cover m-3 rounded"
             />
-            <p>{event.price} EGP</p>
+            <p>{event.selectedPrice || event.price} EGP</p>
           </div>
 
           <div className="flex items-center gap-3 ">
             <h1>Number of tickets</h1>
             <Button
               className="bg-brand-secondary"
-              onClick={() => updateQuantity(event.id, -1)}
+              onClick={() => updateQuantity(event.id,event.selectedType, -1)}
             >
               −
             </Button>
             <span >{event.quantity || 1}</span>
             <Button
               className="bg-brand-secondary "
-              onClick={() => updateQuantity(event.id, 1)}
+              onClick={() => updateQuantity(event.id,event.selectedType, 1)}
             >
               +
             </Button>
           </div>
 
           <div className="font-semibold">
-            {event.price * (event.quantity || 1)} EGP
+            {(event.selectedPrice ||event.price) * (event.quantity || 1)} EGP
           </div>
         </div>
       ))}
