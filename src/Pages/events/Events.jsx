@@ -1,5 +1,6 @@
 import { useState } from "react";
-import EventCard from "./componant/EventCard";
+import EventCard from "../../Components/eventCard/EventCard";
+
 const Events = ({ setSelectedEvent }) => {
   const [event] = useState([
     {
