@@ -1,35 +1,32 @@
 import { Button, Typography } from "@material-tailwind/react";
-import PopularPicksCard from "./PopularPicksCard";
 import { useState } from "react";
+import EventCard from "../../../Components/eventCard/EventCard";
 
 const PopularPicks = () => {
   const [topEvents, setTopEvents] = useState([
     {
       id: 1,
-      date: "Aug 13",
-      time: "Sun • 10:00am",
-      title: "Elements Music and Arts Festival - Sunday",
-      location: "Pocono Raceway",
-      img: "/sport1.png",
-      rating: 4.8,
+      image: "./sport1.png",
+      title: "Youth Basketball Championship",
+      price: 100,
+      date: "December 15, 2025",
+      location: "Al Gezira Sports Club – Cairo",
     },
     {
       id: 2,
-      date: "Aug 13",
-      time: "Sun • 11:00am",
-      title: "Orange County Fair - Admission",
-      location: "Orange County Fair and Event Center",
-      img: "/event2.png",
-      rating: 4.6,
+      image: "./event2.png",
+      title: "Outdoor Movie Night",
+      price: 75,
+      date: "October 3, 2025",
+      location: "Zed Park – Sheikh Zayed, Giza",
     },
     {
       id: 3,
-      date: "Aug 13",
-      time: "Sun • 11:00am",
-      title: "Audien (21+ Event)",
-      location: "AYU Dayclub",
-      img: "/event3.png",
-      rating: 4.9,
+      image: "./event4.png",
+      title: "Summer Beats Live Concert",
+      price: 250,
+      date: "August 8, 2025",
+      location: "Cairo Festival City Amphitheater – New Cairo",
     },
   ]);
 
@@ -45,9 +42,9 @@ const PopularPicks = () => {
         </Typography>
       </div>
       <div className="mt-2 border-t border-brand-secondary"></div>
-      <div className="flex flex-col mt-8 gap-10">
+      <div className="flex flex-col mt-8 gap-10 items-center">
         {topEvents.map((e) => {
-          return <PopularPicksCard events={e} key={e.id} />;
+          return <EventCard key={e.id} event={e} />;
         })}
       </div>
     </div>
