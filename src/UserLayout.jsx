@@ -11,7 +11,6 @@ import EventDetails from "./Pages/event-details/EventDetails";
 import Profile from "./Pages/profile/Profile";
 import Signup from "./Pages/signup/Signup";
 import NotFound from "./Pages/notFound/NotFound";
-import AuthContext from "./Context/AuthContext";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -20,43 +19,38 @@ const UserLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <AuthContext.Provider value={isLoggedIn}>
-      <div className="w-full">
-        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+    <div className="w-full">
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="about" element={<About />} />
-          <Route path="book-tickets" element={<BookTickets />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="events" element={<Events />} />
-          <Route
-            path="event-details/:id"
-            element={<EventDetails setSelectedEvent={setSelectedEvent} />}
-          />
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="about" element={<About />} />
+        <Route path="book-tickets" element={<BookTickets />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="events" element={<Events />} />
+        <Route
+          path="event-details/:id"
+          element={<EventDetails setSelectedEvent={setSelectedEvent} />}
+        />
 
-          <Route
-            path="login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
-          />
-          <Route
-            path="my-tickets"
-            element={
-              <MyTickets
-                selectedEvent={selectedEvent}
-                setSelectedEvent={setSelectedEvent}
-              />
-            }
-          />
+        <Route path="login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route
+          path="my-tickets"
+          element={
+            <MyTickets
+              selectedEvent={selectedEvent}
+              setSelectedEvent={setSelectedEvent}
+            />
+          }
+        />
 
-          <Route path="sign-up" element={<Signup />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Route path="sign-up" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
-        <Footer />
-      </div>
-    </AuthContext.Provider>
+      <Footer />
+    </div>
   );
 };
 
