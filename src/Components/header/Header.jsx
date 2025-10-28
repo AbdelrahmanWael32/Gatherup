@@ -46,12 +46,16 @@ const Header = () => {
 
             {/* Auth Buttons - Desktop */}
             <div className="hidden md:flex items-center gap-4">
-              <button className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
-                Sign Up
-              </button>
-              <button className="px-6 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors">
-                Login
-              </button>
+              <Link to="/sign-up">
+                <button className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
+                  Sign Up
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="px-6 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors">
+                  Login
+                </button>
+              </Link>
 
               {theme == "light" ? (
                 <Moon
@@ -89,12 +93,16 @@ const Header = () => {
                   </Link>
                 ))}
                 <div className="flex gap-2 pt-2">
-                  <button className="flex-1 px-4 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors text-sm">
-                    Login
-                  </button>
-                  <button className="flex-1 px-4 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors text-sm">
-                    Sign Up
-                  </button>
+                  <Link to="/login">
+                    <button className="flex-1 px-4 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors text-sm">
+                      Login
+                    </button>
+                  </Link>
+                  <Link to="/sign-up">
+                    <button className="flex-1 px-4 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors text-sm">
+                      Sign Up
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
