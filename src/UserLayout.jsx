@@ -13,6 +13,7 @@ import Signup from "./Pages/signup/Signup";
 import NotFound from "./Pages/notFound/NotFound";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import CheckLogin from "./Components/auth/CheckLogin";
 
 const UserLayout = () => {
   const [selectedEvent, setSelectedEvent] = useState([]);
@@ -24,7 +25,14 @@ const UserLayout = () => {
 
       <Routes>
         <Route index element={<Home />} />
-        <Route path="profile" element={<Profile />} />
+        <Route
+          path="profile"
+          element={
+            <CheckLogin>
+              <Profile />
+            </CheckLogin>
+          }
+        />
         <Route path="about" element={<About />} />
         <Route path="book-tickets" element={<BookTickets />} />
         <Route path="contact" element={<Contact />} />
