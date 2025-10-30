@@ -8,7 +8,7 @@ const AdminLayout = () => {
   const [event] = useState([
     {
       id: 1,
-      image: "./sport1.png",
+      image: "/sport1.png",
       title: "Youth Basketball Championship",
       price: 100,
       date: "December 15, 2025",
@@ -16,7 +16,7 @@ const AdminLayout = () => {
     },
     {
       id: 2,
-      image: "./event2.png",
+      image: "/event2.png",
       title: "Outdoor Movie Night",
       price: 75,
       date: "October 3, 2025",
@@ -24,7 +24,7 @@ const AdminLayout = () => {
     },
     {
       id: 3,
-      image: "./event4.png",
+      image: "/event4.png",
       title: "Summer Beats Live Concert",
       price: 250,
       date: "August 8, 2025",
