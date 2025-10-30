@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import useTheme from "../../hooks/useTheme";
 import ProfileMenu from "./ProfileMenu";
 import { useLogin } from "../../hooks/useLogin";
+import UserProfile from "../../Pages/login/comp/userprofile";
+
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -50,6 +52,17 @@ const Header = () => {
 
             {/* Auth Buttons - Desktop */}
             <div className="hidden md:flex items-center gap-4">
+              <Link to="/sign-up">
+                <button className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
+                  Sign Up
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="px-6 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors">
+                  Login
+                </button>
+              </Link>
+<UserProfile/>
               {theme == "light" ? (
                 <Moon
                   className="text-white font-bold cursor-pointer"
@@ -91,7 +104,7 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile Navigation */}
+        
           {openNav && (
             <div className="md:hidden pb-4 border-t border-[#04092C]">
               <div className="flex flex-col gap-3 py-4">
@@ -115,6 +128,7 @@ const Header = () => {
                       Sign Up
                     </button>
                   </Link>
+      
                 </div>
               </div>
             </div>

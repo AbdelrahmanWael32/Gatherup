@@ -13,10 +13,9 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 
 function Login({ setIsLoggedIn }) {
-  {
-    /*use context*/
-  }
-  const { userStatus, userInfo, updateUserInfo, updateUserStatus } = useLogin();
+  
+  
+  const {  updateUserInfo, updateUserStatus } = useLogin();
 
   const [log, setLog] = useState({
     email: "",
