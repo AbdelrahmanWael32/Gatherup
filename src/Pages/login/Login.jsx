@@ -16,7 +16,7 @@ function Login({ setIsLoggedIn }) {
   {
     /*use context*/
   }
-  const { userStatus, userInfo, setUserInfo, setUserStatus } = useLogin();
+  const { userStatus, userInfo, updateUserInfo, updateUserStatus } = useLogin();
 
   const [log, setLog] = useState({
     email: "",
@@ -27,13 +27,13 @@ function Login({ setIsLoggedIn }) {
 
   const handleLogin = () => {
     if (log.email === "admin" && log.password === "123") {
-      setUserStatus(true);
-      setUserInfo("admin");
+      updateUserStatus(true);
+      updateUserInfo("admin");
       setIsLoggedIn(true);
       navigate("/");
     } else if (log.email === "user" && log.password === "123") {
-      setUserStatus(true);
-      setUserInfo("user");
+      updateUserStatus(true);
+      updateUserInfo("user");
       setIsLoggedIn(true);
       navigate("/");
     } else {
