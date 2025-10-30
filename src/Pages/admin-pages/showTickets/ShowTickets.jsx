@@ -1,7 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { adminGetTicket } from "../Hooks/adminGetTicket";
+import { useEffect } from "react";
 
 const ShowTickets = ({ event }) => {
   const navigate = useNavigate();
+
+  const { setSelectedTicket, setAllTickets } = adminGetTicket();
+  useEffect(() => {
+    setAllTickets(event);
+  }, [event]);
 
   return (
     <div className="min-h-screen">
@@ -51,9 +58,15 @@ const ShowTickets = ({ event }) => {
                 <div className="text-brand-secondary">{ticket.date}</div>
                 <div className="text-brand-secondary">{ticket.location}</div>
                 <div className="flex justify-center gap-2">
-                  <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    View
-                  </button>
+                  <Link
+                    to={`/admin/ticket-details/${ticket.id}`}
+                    onClick={() => setSelectedTicket(ticket)}
+                  >
+                    <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                      View
+                    </button>
+                  </Link>
+
                   <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
                     Edit
                   </button>
