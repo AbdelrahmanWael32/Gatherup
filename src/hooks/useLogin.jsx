@@ -4,7 +4,7 @@ const GetAuth = createContext();
 
 const AuthContext = ({ children }) => {
   const [userStatus, setUserStatus] = useState(
-    sessionStorage.hul ? true : false
+    sessionStorage.hul == "true" ? true : false
   );
   const [userInfo, setUserInfo] = useState(
     sessionStorage.lui ? sessionStorage.lui : null
