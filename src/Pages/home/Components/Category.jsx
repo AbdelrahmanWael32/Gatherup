@@ -1,7 +1,6 @@
 import { Button, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import CategoryCard from "./CategoryCard";
-import { Link } from "react-router-dom";
 
 const Category = () => {
   const [categories, setCategories] = useState([
@@ -34,7 +33,7 @@ const Category = () => {
           Browse by Category
         </Typography>
         <Button size="sm" className="bg-brand-primary h-3/4 p-3">
-          <Link to="/events">Book Now</Link>
+          Show More
         </Button>
       </div>
       <div className="mt-2 border-t border-brand-secondary"></div>
