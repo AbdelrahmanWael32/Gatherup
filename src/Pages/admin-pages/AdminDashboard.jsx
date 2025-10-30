@@ -9,6 +9,8 @@ import {
 import { Link } from "react-router-dom";
 
 const AdminDashboard = ({ event }) => {
+  console.log(event);
+
   return (
     <div className="flex justify-center">
       <Card className="mt-6 w-96">
