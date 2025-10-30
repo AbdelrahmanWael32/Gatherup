@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Search, MapPin, Calendar, Menu, X, SunMoon, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
 import useTheme from "../../hooks/useTheme";
+import UserProfile from "../../Pages/login/comp/userprofile";
+
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -56,7 +58,7 @@ const Header = () => {
                   Login
                 </button>
               </Link>
-
+<UserProfile/>
               {theme == "light" ? (
                 <Moon
                   className="text-white font-bold cursor-pointer"
@@ -79,7 +81,7 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile Navigation */}
+        
           {openNav && (
             <div className="md:hidden pb-4 border-t border-[#04092C]">
               <div className="flex flex-col gap-3 py-4">
@@ -103,6 +105,7 @@ const Header = () => {
                       Sign Up
                     </button>
                   </Link>
+      
                 </div>
               </div>
             </div>
