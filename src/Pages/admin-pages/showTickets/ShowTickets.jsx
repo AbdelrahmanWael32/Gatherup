@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ShowTickets = ({ event }) => {
   const navigate = useNavigate();
@@ -51,9 +51,12 @@ const ShowTickets = ({ event }) => {
                 <div className="text-brand-secondary">{ticket.date}</div>
                 <div className="text-brand-secondary">{ticket.location}</div>
                 <div className="flex justify-center gap-2">
-                  <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    View
-                  </button>
+                  <Link to={`/admin/ticket-details/${ticket.id}`}>
+                    <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                      View
+                    </button>
+                  </Link>
+
                   <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
                     Edit
                   </button>
