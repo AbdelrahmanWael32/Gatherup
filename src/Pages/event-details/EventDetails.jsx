@@ -140,7 +140,7 @@ Perfect for music lovers, friends, and anyone who wants to dance, sing, and cele
   };
 
   return (
-    <div className=" py-12 px-6">
+    <div className=" pt-12 px-6">
       <h1 className="text-3xl font-semibold text-brand-dark mb-3">
         {event.title}
       </h1>
