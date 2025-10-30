@@ -1,7 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
+import { adminGetTicket } from "../Hooks/adminGetTicket";
 
 const ShowTickets = ({ event }) => {
   const navigate = useNavigate();
+
+  const { setSelectedTicket, setAllTickets } = adminGetTicket();
 
   return (
     <div className="min-h-screen">
@@ -51,7 +54,10 @@ const ShowTickets = ({ event }) => {
                 <div className="text-brand-secondary">{ticket.date}</div>
                 <div className="text-brand-secondary">{ticket.location}</div>
                 <div className="flex justify-center gap-2">
-                  <Link to={`/admin/ticket-details/${ticket.id}`}>
+                  <Link
+                    to={`/admin/ticket-details/${ticket.id}`}
+                    onClick={() => setSelectedTicket(ticket)}
+                  >
                     <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
                       View
                     </button>

@@ -38,7 +38,7 @@ const AdminLayout = () => {
       <Routes>
         <Route index element={<AdminDashboard event={event} />} />
         <Route path="tickets" element={<ShowTickets event={event} />} />
-        <Route path="ticket-details/*" element={<TicketDetails />} />
+        <Route path="ticket-details/:id" element={<TicketDetails />} />
       </Routes>
     </div>
   );

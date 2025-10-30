@@ -3,6 +3,7 @@ import UserLayout from "./UserLayout";
 import AdminLayout from "./AdminLayout";
 import AuthContext from "./hooks/useLogin";
 import CheckAdmin from "./Components/auth/CheckAdmin";
+import TicketContext from "./Pages/admin-pages/Hooks/adminGetTicket";
 
 const App = () => {
   return (
@@ -13,7 +14,9 @@ const App = () => {
           path="/admin/*"
           element={
             <CheckAdmin>
-              <AdminLayout />
+              <TicketContext>
+                <AdminLayout />
+              </TicketContext>
             </CheckAdmin>
           }
         />
