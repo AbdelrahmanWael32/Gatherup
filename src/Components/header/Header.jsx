@@ -2,11 +2,15 @@ import { useState } from "react";
 import { Search, MapPin, Calendar, Menu, X, SunMoon, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
 import useTheme from "../../hooks/useTheme";
+import ProfileMenu from "./ProfileMenu";
+import { useLogin } from "../../hooks/useLogin";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
 
   const { theme, toggleTheme } = useTheme();
+
+  const { userStatus } = useLogin();
 
   const navItems = [
     { id: 0, name: "Trending", route: "/" },
@@ -46,17 +50,6 @@ const Header = () => {
 
             {/* Auth Buttons - Desktop */}
             <div className="hidden md:flex items-center gap-4">
-              <Link to="/sign-up">
-                <button className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
-                  Sign Up
-                </button>
-              </Link>
-              <Link to="/login">
-                <button className="px-6 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors">
-                  Login
-                </button>
-              </Link>
-
               {theme == "light" ? (
                 <Moon
                   className="text-white font-bold cursor-pointer"
@@ -67,6 +60,25 @@ const Header = () => {
                   className="text-white font-bold cursor-pointer"
                   onClick={toggleTheme}
                 />
+              )}
+
+              {userStatus ? (
+                <div className="hidden md:flex">
+                  <ProfileMenu />
+                </div>
+              ) : (
+                <>
+                  <Link to="/sign-up">
+                    <button className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
+                      Sign Up
+                    </button>
+                  </Link>
+                  <Link to="/login">
+                    <button className="px-6 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors">
+                      Login
+                    </button>
+                  </Link>
+                </>
               )}
             </div>
 
