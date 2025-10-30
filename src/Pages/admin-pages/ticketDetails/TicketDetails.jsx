@@ -1,15 +1,18 @@
+import { useParams } from "react-router-dom";
 import { adminGetTicket } from "../Hooks/adminGetTicket";
 
 const TicketDetails = () => {
-  const { selectedTicket, allTickets } = adminGetTicket();
-  console.log(selectedTicket);
+  const { allTickets } = adminGetTicket();
+  const { id } = useParams();
+  const { title, date, location, price, image } = allTickets.find(
+    (ticket) => ticket.id === Number(id)
+  );
 
-  const { title, date, id, location, price, image } = selectedTicket;
   return (
     <div className="flex m-0 lg:px-32 p-4 flex-col bg-brand-secondary gap-2">
       <span className="text-xl text-center">{title}</span>
       <div className="flex text-xl flex-col">
-        <span>Id:{id}</span>
+        <span>Id: {id}</span>
         <span>Data: {date}</span>
         <span>Location: {location}</span>
         <span>Price: {price}</span>

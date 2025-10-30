@@ -1,10 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { adminGetTicket } from "../Hooks/adminGetTicket";
+import { useEffect } from "react";
 
 const ShowTickets = ({ event }) => {
   const navigate = useNavigate();
 
   const { setSelectedTicket, setAllTickets } = adminGetTicket();
+  useEffect(() => {
+    setAllTickets(event);
+  }, [event]);
 
   return (
     <div className="min-h-screen">
