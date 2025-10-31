@@ -67,9 +67,13 @@ const ShowTickets = ({ event }) => {
                     </button>
                   </Link>
 
-                  <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    Edit
-                  </button>
+                  <Link
+  to="/admin/edit"
+  className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition inline-block text-center"
+>
+  Edit
+</Link>
+
                   <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
                     Delete
                   </button>
