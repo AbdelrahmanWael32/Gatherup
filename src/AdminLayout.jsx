@@ -5,7 +5,7 @@ import AdminHeader from "./Pages/admin-pages/Components/AdminHeader";
 import { useState } from "react";
 
 const AdminLayout = () => {
-  const [event] = useState([
+  const [event, setEvent] = useState([
     {
       id: 1,
       image: "/sport1.png",
@@ -36,7 +36,14 @@ const AdminLayout = () => {
       <AdminHeader />
       <Routes>
         <Route index element={<AdminDashboard event={event} />} />
-        <Route path="tickets" element={<ShowTickets event={event} />} />
+        <Route
+          path="tickets"
+          element={<ShowTickets event={event} setEvent={setEvent} />}
+        />
+        <Route
+          path="add-tickets"
+          element={<AddTicket event={event} setEvent={setEvent} />}
+        />
       </Routes>
     </div>
   );
