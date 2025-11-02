@@ -7,8 +7,11 @@ import {
   Checkbox,
 } from "@material-tailwind/react";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function SignUpPage() {
+  
+  const navigate = useNavigate();
+
   const [reg, setReg] = useState({
     username: "",
     password: "",
@@ -54,6 +57,7 @@ function SignUpPage() {
       setErrors(newErrors);
     } else {
       setErrors(["Form submitted successfully!"]);
+      navigate("/")
     }
   };
 
@@ -80,7 +84,6 @@ function SignUpPage() {
 
             <Input
               label="Email"
-              type="email"
               size="lg"
               color="blue"
               onChange={(e) => setReg({ ...reg, email: e.target.value })}

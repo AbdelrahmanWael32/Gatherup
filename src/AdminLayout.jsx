@@ -3,6 +3,7 @@ import AdminDashboard from "./Pages/admin-pages/AdminDashboard";
 import ShowTickets from "./Pages/admin-pages/showTickets/ShowTickets";
 import AdminHeader from "./Pages/admin-pages/Components/AdminHeader";
 import { useState } from "react";
+import AddTicket from './Pages/admin-pages/addTicket/AddTicket';
 
 const AdminLayout = () => {
   const [event, setEvent] = useState([
@@ -39,6 +40,7 @@ const AdminLayout = () => {
         <Route
           path="tickets"
           element={<ShowTickets event={event} setEvent={setEvent} />}
+
         />
         <Route
           path="add-tickets"

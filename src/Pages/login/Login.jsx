@@ -10,8 +10,13 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
 
 function Login({ setIsLoggedIn }) {
+  
+  
+  const {  updateUserInfo, updateUserStatus } = useLogin();
+
   const [log, setLog] = useState({
     email: "",
     password: "",
@@ -21,6 +26,13 @@ function Login({ setIsLoggedIn }) {
 
   const handleLogin = () => {
     if (log.email === "admin" && log.password === "123") {
+      updateUserStatus(true);
+      updateUserInfo("admin");
+      setIsLoggedIn(true);
+      navigate("/");
+    } else if (log.email === "user" && log.password === "123") {
+      updateUserStatus(true);
+      updateUserInfo("user");
       setIsLoggedIn(true);
       navigate("/");
     } else {
