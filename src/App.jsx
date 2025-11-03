@@ -6,6 +6,8 @@ import CheckAdmin from "./Components/auth/CheckAdmin";
 import TicketContext from "./Pages/admin-pages/Hooks/adminGetTicket";
 
 const App = () => {
+  console.log("hi");
+  
   return (
     <AuthContext>
       <Routes>
