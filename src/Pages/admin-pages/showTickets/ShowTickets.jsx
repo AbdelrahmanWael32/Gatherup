@@ -1,63 +1,118 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { adminGetTicket } from "../Hooks/adminGetTicket";
+import { useEffect } from "react";
 
 const ShowTickets = ({ event }) => {
   const navigate = useNavigate();
 
+  const { setSelectedTicket, setAllTickets } = adminGetTicket();
+  useEffect(() => {
+    setAllTickets(event);
+  }, [event]);
+
   return (
     <div className="min-h-screen">
-      <div className="max-w-6xl mx-auto mt-10 rounded-xl shadow-md border border-gray-100 p-6">
+      <div className="md:mx-20 mt-10 rounded-xl shadow-md border border-gray-100 p-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold text-brand-primary">
+          <h2 className="sm:text-2xl font-semibold text-brand-primary">
             Tickets Management
           </h2>
           <button
             onClick={() => navigate("/admin/add-tickets")}
-            className="bg-brand-primary text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
+            className="bg-brand-primary text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"  >
             Add Ticket
           </button>
         </div>
 
-        <div className="overflow-x-auto">
-          <div className="grid grid-cols-6 bg-blue-100 py-3 px-4 rounded-t-lg text-brand-dark font-medium">
+        <div>
+          <div className="hidden lg:grid grid-cols-6 bg-blue-100 py-3 px-2 rounded-t-lg text-brand-dark font-medium text-center">
             <div className="col-span-1">Event</div>
-            <div className="col-span-1">Category</div>
-            <div className="col-span-1">Price (EGP)</div>
             <div className="col-span-1">Date</div>
-            <div className="col-span-1">Location</div>
-            <div className="col-span-1 text-center">Actions</div>
+            <div className="col-span-1">Location (EGP)</div>
+            <div className="col-span-1">Category</div>
+            <div className="col-span-1">Price</div>
+            <div className="col-span-1">Actions</div>
           </div>
 
           {event && event.length > 0 ? (
             event.map((ticket) => (
               <div
                 key={ticket.id}
-                className="grid grid-cols-6 items-center border-b border-gray-200 py-3 px-4 hover:bg-gray-50 transition"
+                className="lg:grid grid-cols-6 items-center border-b border-gray-200 py-3 px-4 hover:bg-gray-50 transition text-center"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 justify-center">
                   <img
                     src={ticket.image}
                     className="w-12 h-12 rounded-lg object-cover"
-                    alt={ticket.title}
                   />
-                  <span className="font-medium text-brand-secondary">
+                  <div className="font-medium text-brand-secondary">
                     {ticket.title}
-                  </span>
+                  </div>
                 </div>
-                <div className="text-brand-secondary">
-                  {ticket.category || "N/A"}
+
+                <div className="text-brand-secondary my-4">{ticket.date}</div>
+                <div className="text-brand-secondary my-4">{ticket.location}</div>
+
+                <div className="text-brand-secondary hidden lg:block">
+                  {ticket.ticketCategories.map((Categories, index) => (
+                    <div
+                      key={index}
+                      className="border-b border-gray-100 last:border-none py-1"
+                    >
+                      {Categories.type}
+                    </div>
+                  ))}
                 </div>
-                <div className="text-brand-secondary">{ticket.price}</div>
-                <div className="text-brand-secondary">{ticket.date}</div>
-                <div className="text-brand-secondary">{ticket.location}</div>
-                <div className="flex justify-center gap-2">
-                  <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                <div className="text-brand-secondary hidden lg:block">
+                  {ticket.ticketCategories.map((Categories, index) => (
+                    <div
+                      key={index}
+                      className="border-b border-gray-100 last:border-none py-1"
+                    >
+                      {Categories.price}
+                    </div>
+                  ))}
+                </div>
+
+                {/* mobile */}
+                <div className="lg:hidden flex justify-between items-center gap-4 mb-4">
+                  <div className="text-brand-secondary items-center flex-1">
+                    {ticket.ticketCategories.map((Categories, index) => (
+                      <div
+                        key={index}
+                        className="border-b border-gray-100 last:border-none py-1"
+                      >
+                        {Categories.type}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-brand-secondary flex-1">
+                    {ticket.ticketCategories.map((Categories, index) => (
+                      <div
+                        key={index}
+                        className="border-b border-gray-100 last:border-none py-1"
+                      >
+                        {Categories.price}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap xl:flex-nowrap justify-center gap-2">
+                  <Link
+                    to={`/admin/ticket-details/${ticket.id}`}
+                    onClick={() => setSelectedTicket(ticket)}
+                    className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600"
+                  >
                     View
-                  </button>
-                  <button className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                  </Link>
+                  <Link
+                    to="/admin/edit"
+                    className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600"
+                  >
                     Edit
-                  </button>
-                  <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
+                  </Link>
+                  <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
                     Delete
                   </button>
                 </div>

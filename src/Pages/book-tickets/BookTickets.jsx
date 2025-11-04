@@ -87,7 +87,7 @@ const BookTickets = () => {
           onChange={(e) => setCard({ ...card, cardNumber: e.target.value })}
         />
 
-        <div className="mt-4 flex">
+        <div className="mt-4 flex flex-col sm:flex-row">
           <div className="mr-4 w-full md:w-8/12">
             <Typography
               variant="small"
