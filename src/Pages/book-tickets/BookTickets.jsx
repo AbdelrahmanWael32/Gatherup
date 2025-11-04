@@ -35,9 +35,14 @@ const BookTickets = () => {
   };
 
   return (
-    <div className="flex justify-center items-center mt-[5rem]">
-      <form onSubmit={handelCheckOut} className="w-full max-w-sm p-2 md:p-10   rounded-lg shadow-md ">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Payment Details</h2>
+    <div className="flex justify-center items-center h-auto md:h-[100vh]">
+      <form
+        onSubmit={handelCheckOut}
+        className="w-full max-w-sm p-10   rounded-lg shadow-md "
+      >
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          Payment Details
+        </h2>
         <Typography
           variant="small"
           color="blue-gray"
