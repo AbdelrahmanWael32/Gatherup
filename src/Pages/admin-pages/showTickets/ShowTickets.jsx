@@ -18,7 +18,7 @@ const ShowTickets = ({ event }) => {
             Tickets Management
           </h2>
           <button
-            onClick={() => navigate("/add-tickets")}
+            onClick={() => navigate("/admin/add-tickets")}
             className="bg-brand-primary text-white px-5 py-2 rounded-lg hover:bg-blue-700"
           >
             Add Ticket
@@ -52,7 +52,9 @@ const ShowTickets = ({ event }) => {
                 </div>
 
                 <div className="text-brand-secondary my-4">{ticket.date}</div>
-                <div className="text-brand-secondary my-4">{ticket.location}</div>
+                <div className="text-brand-secondary my-4">
+                  {ticket.location}
+                </div>
 
                 <div className="text-brand-secondary hidden lg:block">
                   {ticket.ticketCategories.map((Categories, index) => (
@@ -98,7 +100,7 @@ const ShowTickets = ({ event }) => {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="flex flex-wrap xl:flex-nowrap justify-center gap-2">
                   <Link
                     to={`/admin/ticket-details/${ticket.id}`}
