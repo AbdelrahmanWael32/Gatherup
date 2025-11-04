@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import AdminDashboard from "./Pages/admin-pages/AdminDashboard";
 import ShowTickets from "./Pages/admin-pages/showTickets/ShowTickets";
-import AdminHeader from "./Pages/admin-pages/Components/AdminHeader";
+
 import { useState } from "react";
 import TicketDetails from "./Pages/admin-pages/ticketDetails/TicketDetails";
 import EditTickets from "./Pages/admin-pages/EditTicket";
-import AddTicket from './Pages/admin-pages/addTicket/AddTicket';
+import AddTicket from "./Pages/admin-pages/addTicket/AddTicket";
+import AdminHeader from "./Pages/admin-pages/Components/AdminHeader";
 const AdminLayout = () => {
   const [event, setEvent] = useState([
     {
@@ -71,7 +72,10 @@ const AdminLayout = () => {
         <Route index element={<AdminDashboard event={event} />} />
         <Route path="tickets" element={<ShowTickets event={event} />} />
         <Route path="ticket-details/:id" element={<TicketDetails />} />
-        <Route path="add-tickets" element={<AddTicket event={event} setEvent={setEvent} />} />
+        <Route
+          path="add-tickets"
+          element={<AddTicket event={event} setEvent={setEvent} />}
+        />
         <Route path="edit" element={<EditTickets />} />
       </Routes>
     </div>
