@@ -20,7 +20,8 @@ const Header = () => {
     { id: 3, name: "About", route: "/about" },
 
     { id: 4, name: "Contact", route: "/contact" },
-  ];
+    
+    { id: 4, name: "admin", route: "/admin" },  ];
 
   return (
     <div className="bg-[#04092C] ">
