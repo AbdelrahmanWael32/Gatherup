@@ -15,57 +15,78 @@ import {
   PowerIcon,
   UserCircleIcon,
   ShieldCheckIcon,
-} from "@heroicons/react/24/solid";
+} 
+from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
+import { GripHorizontalIcon } from "lucide-react";
 import { useLogin } from "../../../hooks/useLogin";
 
 function UserProfile() {
   const navigate = useNavigate();
-  const { userInfo, updateUserInfo, updateUserStatus } = useLogin(); 
-
+const { userInfo, updateUserInfo, updateUserStatus } = useLogin();
+  
   const logOut = () => {
     updateUserInfo(null);
     updateUserStatus(false);
     navigate("/");
   };
 
+  
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const closeMenu = () => setIsMenuOpen(false);
 
   const handleMenuClick = (label) => {
     closeMenu();
     if (label === "My Profile") navigate("/profile");
-    else if (label === "Admin") navigate("/admin");
     else if (label === "Sign Out") logOut();
+     else if (label === "Admin") navigate("/admin")
   };
 
-  const profileMenuItems = [
-    { label: "My Profile", icon: UserCircleIcon },
-    { label: "Edit Profile", icon: Cog6ToothIcon },
-    { label: "Inbox", icon: InboxArrowDownIcon },
-    { label: "Help", icon: LifebuoyIcon },
-    { label: "Sign Out", icon: PowerIcon },
-  ];
-
-
-  if (userInfo === "admin") {
+   const profileMenuItems = [
+    {
+      label: "My Profile",
+      icon: UserCircleIcon,
+    },
+    {
+      label: "Edit Profile",
+      icon: Cog6ToothIcon,
+      GripHorizontalIcon,
+    },
+    {
+      label: "Inbox",
+      icon: InboxArrowDownIcon,
+    },
+    {
+      label: "Help",
+      icon: LifebuoyIcon,
+    },
+    {
+      label: "Sign Out",
+      icon: PowerIcon,
+    },
+  ]
+   
+ if (userInfo === "admin") {
     profileMenuItems.splice(2, 0, { label: "Admin", icon: ShieldCheckIcon });
   }
-  else{
-    navigate("/NotFound")
-  }
-
+  
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
-        <Button variant="text" color="blue-gray" className="flex items-center rounded-full p-0">
+        <Button
+          variant="text"
+          color="blue-gray"
+          className="flex items-center rounded-full p-0"
+        >
           <Avatar
             variant="circular"
             size="md"
-            alt="User"
+            alt="tania andrew"
             withBorder={true}
             color="blue-gray"
-            className="p-0.5"
+            className=" p-0.5"
             src="https://docs.material-tailwind.com/img/face-2.jpg"
           />
         </Button>
@@ -102,5 +123,4 @@ function UserProfile() {
     </Menu>
   );
 }
-
 export default UserProfile;
