@@ -5,8 +5,9 @@ import AdminHeader from "./Pages/admin-pages/Components/AdminHeader";
 import { useState } from "react";
 import TicketDetails from "./Pages/admin-pages/ticketDetails/TicketDetails";
 import EditTickets from "./Pages/admin-pages/EditTicket";
+import AddTicket from './Pages/admin-pages/addTicket/AddTicket';
 const AdminLayout = () => {
-  const [event] = useState([
+  const [event, setEvent] = useState([
     {
       id: 1,
       image: "/sport1.png",
@@ -71,6 +72,9 @@ const AdminLayout = () => {
         <Route path="tickets" element={<ShowTickets event={event} />} />
         <Route path="ticket-details/:id" element={<TicketDetails />} />
         <Route path="edit" element={<EditTickets />} />
+        <Route path="add-tickets"
+          element={<AddTicket event={event} setEvent={setEvent} />}
+        />
       </Routes>
     </div>
   );

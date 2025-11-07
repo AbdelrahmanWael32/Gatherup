@@ -18,7 +18,7 @@ const ShowTickets = ({ event }) => {
             Tickets Management
           </h2>
           <button
-            onClick={() => navigate("/add-tickets")}
+            onClick={() => navigate("/admin/add-tickets")}
             className="bg-brand-primary text-white px-5 py-2 rounded-lg hover:bg-blue-700"
           >
             Add Ticket

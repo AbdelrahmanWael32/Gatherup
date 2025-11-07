@@ -14,15 +14,37 @@ import {
   LifebuoyIcon,
   PowerIcon,
   UserCircleIcon,
-} from "@heroicons/react/24/solid";
+  ShieldCheckIcon,
+} 
+from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 import { GripHorizontalIcon } from "lucide-react";
 import { useLogin } from "../../../hooks/useLogin";
 
 function UserProfile() {
   const navigate = useNavigate();
+const { userInfo, updateUserInfo, updateUserStatus } = useLogin();
+  
+  const logOut = () => {
+    updateUserInfo(null);
+    updateUserStatus(false);
+    navigate("/");
+  };
 
-  const profileMenuItems = [
+  
+
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const handleMenuClick = (label) => {
+    closeMenu();
+    if (label === "My Profile") navigate("/profile");
+    else if (label === "Sign Out") logOut();
+     else if (label === "Admin") navigate("/admin")
+  };
+
+   const profileMenuItems = [
     {
       label: "My Profile",
       icon: UserCircleIcon,
@@ -44,25 +66,12 @@ function UserProfile() {
       label: "Sign Out",
       icon: PowerIcon,
     },
-  ];
-
-  const { updateUserInfo, updateUserStatus } = useLogin();
-  const logOut = () => {
-    updateUserInfo(null);
-    updateUserStatus(false);
-    navigate("/");
-  };
-
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const closeMenu = () => setIsMenuOpen(false);
-
-  const handleMenuClick = (label) => {
-    closeMenu();
-    if (label === "My Profile") navigate("/profile");
-    else if (label === "Sign Out") logOut();
-  };
-
+  ]
+   
+ if (userInfo === "admin") {
+    profileMenuItems.splice(2, 0, { label: "Admin", icon: ShieldCheckIcon });
+  }
+  
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
