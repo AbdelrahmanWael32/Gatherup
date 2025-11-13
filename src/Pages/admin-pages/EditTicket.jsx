@@ -51,10 +51,26 @@ function EditTickets() {
               placeholder="enter description"/>
             </div>
 
+
+ 
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Typography variant="small" className="mb-1  text-brand-dark">
+       event type 
+              </Typography>
+              <Input type="text" 
+              placeholder="enter price "/>
+            </div>
+</div>
+
+
+
+
+
      
           <div>
             <Typography variant="small" className="mb-0  text-brand-dark">
-            event Time
+            event date
             </Typography>
             <Input type="date"
             placeholder="MM/DD/YY"/>

@@ -6,10 +6,11 @@ import {
   Typography,
   Checkbox,
 } from "@material-tailwind/react";
+import { User } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 function SignUpPage() {
-  
   const navigate = useNavigate();
 
   const [reg, setReg] = useState({
@@ -23,8 +24,27 @@ function SignUpPage() {
 
   const [errors, setErrors] = useState([]);
 
-  const handleNewUser = (e) => {
+  const handleNewUser = async (e) => {
     e.preventDefault();
+    if (true) {
+      const req = await fetch("http://localhost:7000/api/v1/auth/register", {
+        method: "post",
+        headers: {
+        "Content-Type": "application/json",
+
+        },
+      body: JSON.stringify({
+  username: reg.username, 
+  email: reg.email,
+  password: reg.password,
+  phonenumber: reg.phonenumber,
+  city: reg.city,
+}),
+
+      });
+      const res = await req.json();
+      console.log(res);
+    }
 
     const newErrors = [];
 
@@ -57,7 +77,7 @@ function SignUpPage() {
       setErrors(newErrors);
     } else {
       setErrors(["Form submitted successfully!"]);
-      navigate("/")
+      navigate("/");
     }
   };
 
