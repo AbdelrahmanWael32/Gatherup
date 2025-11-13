@@ -23,7 +23,7 @@ function SignUpPage() {
   });
 
   const [errors, setErrors] = useState([]);
-  console.log("API URL at build:", import.meta.env.VITE_API_URL);
+
   const handleNewUser = async (e) => {
     e.preventDefault();
     if (true) {
