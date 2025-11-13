@@ -23,25 +23,26 @@ function SignUpPage() {
   });
 
   const [errors, setErrors] = useState([]);
-
+  console.log("API URL at build:", import.meta.env.VITE_API_URL);
   const handleNewUser = async (e) => {
     e.preventDefault();
     if (true) {
-      const req = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, {
-        method: "post",
-        headers: {
-        "Content-Type": "application/json",
-
-        },
-      body: JSON.stringify({
-  username: reg.username, 
-  email: reg.email,
-  password: reg.password,
-  phonenumber: reg.phonenumber,
-  city: reg.city,
-}),
-
-      });
+      const req = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/v1/auth/register`,
+        {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: reg.username,
+            email: reg.email,
+            password: reg.password,
+            phonenumber: reg.phonenumber,
+            city: reg.city,
+          }),
+        }
+      );
       const res = await req.json();
       console.log(res);
     }
