@@ -23,7 +23,7 @@ function SignUpPage() {
   });
 
   const [errors, setErrors] = useState([]);
-
+  // test
   const handleNewUser = async (e) => {
     e.preventDefault();
     if (true) {
