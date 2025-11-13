@@ -27,7 +27,7 @@ function SignUpPage() {
   const handleNewUser = async (e) => {
     e.preventDefault();
     if (true) {
-      const req = await fetch("http://localhost:7000/api/v1/auth/register", {
+      const req = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, {
         method: "post",
         headers: {
         "Content-Type": "application/json",
