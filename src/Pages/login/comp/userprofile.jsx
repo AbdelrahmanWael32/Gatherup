@@ -15,23 +15,24 @@ import {
   PowerIcon,
   UserCircleIcon,
   ShieldCheckIcon,
-} 
-from "@heroicons/react/24/solid";
+} from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 import { GripHorizontalIcon } from "lucide-react";
 import { useLogin } from "../../../hooks/useLogin";
+import { jwtDecode } from "jwt-decode";
 
 function UserProfile() {
   const navigate = useNavigate();
-const { userInfo, updateUserInfo, updateUserStatus } = useLogin();
-  
+  const { userInfo, updateUserInfo, updateUserStatus } = useLogin();
+  const token = jwtDecode(localStorage.token);
+  const { role } = token;
   const logOut = () => {
     updateUserInfo(null);
     updateUserStatus(false);
+    localStorage.token = "";
+    localStorage.userId = "";
     navigate("/");
   };
-
-  
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -41,10 +42,10 @@ const { userInfo, updateUserInfo, updateUserStatus } = useLogin();
     closeMenu();
     if (label === "My Profile") navigate("/profile");
     else if (label === "Sign Out") logOut();
-     else if (label === "Admin") navigate("/admin")
+    else if (label === "Admin") navigate("/admin");
   };
 
-   const profileMenuItems = [
+  const profileMenuItems = [
     {
       label: "My Profile",
       icon: UserCircleIcon,
@@ -66,12 +67,12 @@ const { userInfo, updateUserInfo, updateUserStatus } = useLogin();
       label: "Sign Out",
       icon: PowerIcon,
     },
-  ]
-   
- if (userInfo === "admin") {
+  ];
+
+  if (userInfo === "admin" || role == "admin") {
     profileMenuItems.splice(2, 0, { label: "Admin", icon: ShieldCheckIcon });
   }
-  
+
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
