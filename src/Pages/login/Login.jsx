@@ -34,7 +34,7 @@ function Login({ setIsLoggedIn }) {
     }
 
     const res = await fetch(
-      "https://gatherup-backend.vercel.app/api/v1/auth/login",
+      `${import.meta.env.VITE_API_URL}/api/v1/auth/login`,
       {
         method: "POST",
         headers: {
