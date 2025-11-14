@@ -27,25 +27,32 @@ function SignUpPage() {
   const handleNewUser = async (e) => {
     e.preventDefault();
     if (true) {
-      const req = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/v1/auth/register`,
-        {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: reg.username,
-            email: reg.email,
-            password: reg.password,
-            phonenumber: reg.phonenumber,
-            city: reg.city,
-          }),
-        }
-      );
+
+      const req = await fetch("https://gatherup-backend.vercel.app/api/v1/auth/register", {
+        method: "post",
+        headers: {
+        "Content-Type": "application/json",
+
+        },
+      body: JSON.stringify({
+  username: reg.username, 
+  email: reg.email,
+  password: reg.password,
+  phonenumber: reg.phonenumber,
+  city: reg.city,
+}),
+
+      });
+
+
       const res = await req.json();
       console.log(res);
+    
+    if (res.message && res.message.toLowerCase().includes("user already exist")) {
+      setErrors(["This email is already registered. Please log in instead."]);
+      return; 
     }
+  }
 
     const newErrors = [];
 

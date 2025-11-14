@@ -13,30 +13,64 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 
 function Login({ setIsLoggedIn }) {
-  
-  
-  const {  updateUserInfo, updateUserStatus } = useLogin();
+  const { updateUserInfo, updateUserStatus } = useLogin();
 
   const [log, setLog] = useState({
     email: "",
     password: "",
   });
 
+  const [message, setMessage] = useState(""); // ✅ حالة للرسالة
+  const [messageType, setMessageType] = useState(""); // success أو error
+
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (log.email === "admin" && log.password === "123") {
+  const handleLogin = async () => {
+    if (!log.email || !log.password) {
+      setMessage("Please fill all fields");
+      setMessageType("error");
+      setTimeout(() => setMessage(""), 3000);
+      return;
+    }
+
+    const res = await fetch(
+      "https://gatherup-backend.vercel.app/api/v1/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: log.email,
+          password: log.password,
+        }),
+      }
+    );
+
+    const data = await res.json();
+    console.log("Response from backend:", data);
+
+    if (res.ok) {
+      // ✅ بدل الـ alert
+      setMessage("Login successful!");
+      setMessageType("success");
+
+      localStorage.setItem("token", data.data.token);
+      localStorage.setItem("userId", data.data.id);
+
       updateUserStatus(true);
-      updateUserInfo("admin");
+      updateUserInfo("User");
       setIsLoggedIn(true);
-      navigate("/");
-    } else if (log.email === "user" && log.password === "123") {
-      updateUserStatus(true);
-      updateUserInfo("user");
-      setIsLoggedIn(true);
-      navigate("/");
+
+      // يمشي لصفحة الرئيسية بعد ثانية صغيرة
+      setTimeout(() => {
+        setMessage("");
+        navigate("/");
+      }, 1500);
     } else {
-      alert("Invalid email or password");
+      setMessage(data.message || "Invalid email or password");
+      setMessageType("error");
+      setTimeout(() => setMessage(""), 3000);
     }
   };
 
@@ -53,6 +87,19 @@ function Login({ setIsLoggedIn }) {
         </CardHeader>
 
         <CardBody className="flex flex-col gap-4">
+          {/* ✅ الرسالة تظهر هنا */}
+          {message && (
+            <div
+              className={`text-center p-2 rounded-md font-medium ${
+                messageType === "success"
+                  ? "bg-green-500 text-white"
+                  : "bg-red-500 text-white"
+              }`}
+            >
+              {message}
+            </div>
+          )}
+
           <Input
             label="Email"
             type="email"

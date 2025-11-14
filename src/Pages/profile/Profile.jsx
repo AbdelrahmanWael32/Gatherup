@@ -13,8 +13,17 @@ import {
 } from "@material-tailwind/react";
 import React, { useState } from "react";
 import { MdNotifications } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
+
+  const BASE_URL = "https://gatherup-backend.vercel.app/api/v1/auth";
+
+
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
   const [user, setUser] = useState({
     name: "Basmala Hassan",
     email: "basmala@example.com",
@@ -33,9 +42,82 @@ function Profile() {
     { id: 3, text: "Discounts available on opera tickets" },
   ]);
 
+
+  const getUserIdFromToken = () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return null;
+      const payload = JSON.parse(window.atob(token.split(".")[1]));
+
+      return payload.id || payload._id || payload.userId || null;
+    } catch (e) {
+      console.warn("Failed to decode token:", e);
+      return null;
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    const token = localStorage.getItem("token");
+    const USER_ID = getUserIdFromToken();
+
+    if (!USER_ID) {
+      setMessage("User ID not found. Please login again.");
+      setMessageType("error");
+      setTimeout(() => setMessage(""), 3000);
+      return;
+    }
+
+    try {
+      const req = await fetch(`${BASE_URL}/delete/${USER_ID}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: token || "",
+        },
+      });
+
+      const data = await req.json();
+      console.log("Delete response:", data);
+
+      if (req.ok) {
+        setMessage("Your account has been deleted successfully!");
+        setMessageType("success");
+
+        setTimeout(() => {
+          setUser(null);
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+          navigate("/signup");
+        }, 1400);
+      } else {
+        setMessage(data.message || "Failed to delete your account.");
+        setMessageType("error");
+        setTimeout(() => setMessage(""), 3000);
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
+      setMessage("Something went wrong. Please try again.");
+      setMessageType("error");
+      setTimeout(() => setMessage(""), 3000);
+    }
+  };
+
+  if (!user) return null;
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6 relative">
-      {/* 🔔 Notifications Menu */}
+
+      {message && (
+        <div
+          className={`absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-2 
+            rounded-lg text-white font-medium shadow-md transition-all duration-300
+            ${messageType === "success" ? "bg-green-500" : "bg-red-500"}`}
+        >
+          {message}
+        </div>
+      )}
+
       <div className="absolute top-6 right-10">
         <Menu>
           <MenuHandler>
@@ -65,7 +147,6 @@ function Profile() {
           </MenuList>
         </Menu>
       </div>
-
 
       <Card className="w-full max-w-3xl shadow-lg">
         <CardHeader
@@ -109,8 +190,12 @@ function Profile() {
           </div>
 
           <div className="mt-6 flex justify-end">
-            <Button onClick={() => setUser({ ...user, name: "edit profile" })}>
-              Edit Profile
+            <Button
+              onClick={handleDeleteAccount}
+              color="red"
+              className="hover:bg-red-600 transition-all duration-300"
+            >
+              Delete Profile
             </Button>
           </div>
         </CardBody>
