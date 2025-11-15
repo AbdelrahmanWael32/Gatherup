@@ -38,7 +38,7 @@ const UserLayout = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="events" element={<Events />} />
         <Route
-          path="event-details/:id"
+          path="event-details/:_id"
           element={<EventDetails setSelectedEvent={setSelectedEvent} />}
         />
 

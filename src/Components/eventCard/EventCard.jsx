@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
-const EventCard = ({ event: { id, title, price, image, date, location } }) => {
+const EventCard = ({ event: { _id, title, image, date, location, time } }) => {
   return (
     <Card className="w-full md:max-h-[15rem] max-w-[48rem] flex-col md:flex-row hover:shadow-xl transform hover:-translate-y-2 duration-300">
       <CardHeader
@@ -28,17 +28,17 @@ const EventCard = ({ event: { id, title, price, image, date, location } }) => {
         </Typography>
 
         <Typography color="gray" className="font-normal">
-           {date}
+          {date}
         </Typography>
         <Typography color="gray" className="font-normal">
-           {location}
+          {time}
         </Typography>
-        <Typography color="gray" className="mb-8 font-normal">
-          Start From {price} EGP
+        <Typography color="gray" className="font-normal">
+          {location}
         </Typography>
 
-        <Typography className="flex justify-end ">
-          <Link to={`/event-details/${id}`}>
+        <Typography className="flex justify-end mt-5">
+          <Link to={`/event-details/${_id}`}>
             <Button variant="text" className="flex  gap-2 text-blue-600">
               View Details
               <svg
