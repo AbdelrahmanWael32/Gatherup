@@ -15,7 +15,7 @@ const AddTicket = ({ event, setEvent }) => {
     title: "",
     eventCategory: "",
     ticketCategories: [
-      { type: "", price: "" } // start with one ticket category
+      { type: "", price: "" }, 
     ],
     date: "",
     location: "",
@@ -68,8 +68,10 @@ const AddTicket = ({ event, setEvent }) => {
       newErrors.ticketCategories = "At least one ticket type is required";
 
     form.ticketCategories.forEach((t, i) => {
-      if (!t.type?.trim()) newErrors[`ticketType${i}`] = "Ticket type is required";
-      if (!t.price || t.price <= 0) newErrors[`ticketPrice${i}`] = "Valid price is required";
+      if (!t.type?.trim())
+        newErrors[`ticketType${i}`] = "Ticket type is required";
+      if (!t.price || t.price <= 0)
+        newErrors[`ticketPrice${i}`] = "Valid price is required";
     });
 
     if (!form.date) newErrors.date = "Enter a date";
@@ -83,31 +85,30 @@ const AddTicket = ({ event, setEvent }) => {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
-  if (!validate()) return;
+    e.preventDefault();
+    if (!validate()) return;
 
-  const selectedDate = new Date(form.date);
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  const formattedDate = selectedDate.toLocaleDateString("en-US", options);
+    const selectedDate = new Date(form.date);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const formattedDate = selectedDate.toLocaleDateString("en-US", options);
 
-  const newTicket = {
-    id: event.length + 1,
-    image: imagePreview,
-    title: form.title,
-    date: formattedDate, 
-    location: form.location,
-    ticketCategories: form.ticketCategories.map(t => ({
-      type: t.type,
-      price: parseFloat(t.price),
-    })),
-    eventCategory: form.eventCategory,
-    description: form.description,
+    const newTicket = {
+      id: event.length + 1,
+      image: imagePreview,
+      title: form.title,
+      date: formattedDate,
+      location: form.location,
+      ticketCategories: form.ticketCategories.map((t) => ({
+        type: t.type,
+        price: parseFloat(t.price),
+      })),
+      eventCategory: form.eventCategory,
+      description: form.description,
+    };
+
+    setEvent([...event, newTicket]);
+    navigate("/admin/tickets");
   };
-
-  setEvent([...event, newTicket]);
-  navigate("/admin/tickets");
-};
-
 
   return (
     <div className="flex flex-col items-center justify-center p-8 min-h-screen bg-gray-50">
@@ -123,11 +124,15 @@ const AddTicket = ({ event, setEvent }) => {
             onChange={(e) => handleChange("title", e.target.value)}
             error={!!errors.title}
           />
-          {errors.title && <p className="text-red-500 text-sm -mt-4">{errors.title}</p>}
+          {errors.title && (
+            <p className="text-red-500 text-sm -mt-4">{errors.title}</p>
+          )}
 
-          {/* Event Category */}
+        
           <div>
-            <label className="text-sm text-gray-700 mb-1 block">Event Category</label>
+            <label className="text-sm text-gray-700 mb-1 block">
+              Event Category
+            </label>
             <select
               value={form.eventCategory}
               onChange={(e) => handleChange("eventCategory", e.target.value)}
@@ -142,20 +147,27 @@ const AddTicket = ({ event, setEvent }) => {
               <option value="Festival">Festival</option>
             </select>
             {errors.eventCategory && (
-              <p className="text-red-500 text-sm mt-1">{errors.eventCategory}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.eventCategory}
+              </p>
             )}
           </div>
 
-          {/* Ticket Categories */}
           <div>
-            <label className="text-sm text-gray-700 mb-1 block">Ticket Categories</label>
+            <label className="text-sm text-gray-700 mb-1 block">
+              Ticket Categories
+            </label>
             {form.ticketCategories.map((ticket, index) => (
               <div key={index} className="flex gap-2 mb-2 items-center">
                 <select
                   value={ticket.type}
-                  onChange={(e) => handleTicketChange(index, "type", e.target.value)}
+                  onChange={(e) =>
+                    handleTicketChange(index, "type", e.target.value)
+                  }
                   className={`border rounded-md p-2 ${
-                    errors[`ticketType${index}`] ? "border-red-500" : "border-gray-300"
+                    errors[`ticketType${index}`]
+                      ? "border-red-500"
+                      : "border-gray-300"
                   }`}
                 >
                   <option value="">Select type</option>
@@ -167,9 +179,13 @@ const AddTicket = ({ event, setEvent }) => {
                   type="number"
                   placeholder="Price"
                   value={ticket.price}
-                  onChange={(e) => handleTicketChange(index, "price", e.target.value)}
+                  onChange={(e) =>
+                    handleTicketChange(index, "price", e.target.value)
+                  }
                   className={`border rounded-md p-2 w-24 ${
-                    errors[`ticketPrice${index}`] ? "border-red-500" : "border-gray-300"
+                    errors[`ticketPrice${index}`]
+                      ? "border-red-500"
+                      : "border-gray-300"
                   }`}
                 />
                 {form.ticketCategories.length > 1 && (
@@ -182,14 +198,22 @@ const AddTicket = ({ event, setEvent }) => {
                   </Button>
                 )}
                 {errors[`ticketType${index}`] && (
-                  <p className="text-red-500 text-sm mt-1">{errors[`ticketType${index}`]}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors[`ticketType${index}`]}
+                  </p>
                 )}
                 {errors[`ticketPrice${index}`] && (
-                  <p className="text-red-500 text-sm mt-1">{errors[`ticketPrice${index}`]}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors[`ticketPrice${index}`]}
+                  </p>
                 )}
               </div>
             ))}
-            <Button type="button" onClick={addTicketCategory} className="mt-2 bg-brand-secondary text-black w-full">
+            <Button
+              type="button"
+              onClick={addTicketCategory}
+              className="mt-2 bg-brand-secondary text-black w-full"
+            >
               + Add Ticket Category
             </Button>
           </div>
@@ -201,7 +225,9 @@ const AddTicket = ({ event, setEvent }) => {
             onChange={(e) => handleChange("date", e.target.value)}
             error={!!errors.date}
           />
-          {errors.date && <p className="text-red-500 text-sm -mt-4">{errors.date}</p>}
+          {errors.date && (
+            <p className="text-red-500 text-sm -mt-4">{errors.date}</p>
+          )}
 
           <Input
             label="Location"
@@ -209,7 +235,9 @@ const AddTicket = ({ event, setEvent }) => {
             onChange={(e) => handleChange("location", e.target.value)}
             error={!!errors.location}
           />
-          {errors.location && <p className="text-red-500 text-sm -mt-4">{errors.location}</p>}
+          {errors.location && (
+            <p className="text-red-500 text-sm -mt-4">{errors.location}</p>
+          )}
 
           <Textarea
             label="Description"
@@ -217,10 +245,15 @@ const AddTicket = ({ event, setEvent }) => {
             onChange={(e) => handleChange("description", e.target.value)}
             error={!!errors.description}
           />
-          {errors.description && <p className="text-red-500 text-sm -mt-4">{errors.description}</p>}
+          {errors.description && (
+            <p className="text-red-500 text-sm -mt-4">{errors.description}</p>
+          )}
 
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-            <label htmlFor="imageUpload" className="cursor-pointer text-gray-600">
+            <label
+              htmlFor="imageUpload"
+              className="cursor-pointer text-gray-600"
+            >
               {imagePreview ? (
                 <img
                   src={imagePreview}
@@ -238,7 +271,9 @@ const AddTicket = ({ event, setEvent }) => {
               onChange={handleImageChange}
               className="hidden"
             />
-            {errors.image && <p className="text-red-500 text-sm mt-2">{errors.image}</p>}
+            {errors.image && (
+              <p className="text-red-500 text-sm mt-2">{errors.image}</p>
+            )}
           </div>
 
           <Button type="submit" className="mt-4 bg-brand-primary" fullWidth>
