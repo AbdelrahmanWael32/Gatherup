@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Search, MapPin, Calendar, Menu, X, SunMoon, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
-import useTheme from "../../hooks/useTheme";
 import { useLogin } from "../../hooks/useLogin";
 import UserProfile from "../../Pages/login/comp/userprofile";
+import { FaCartShopping } from "react-icons/fa6";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-
-  const { theme, toggleTheme } = useTheme();
 
   const { userStatus } = useLogin();
 
@@ -20,8 +18,7 @@ const Header = () => {
     { id: 3, name: "About", route: "/about" },
 
     { id: 4, name: "Contact", route: "/contact" },
-
-  ]
+  ];
 
   return (
     <div className="bg-[#04092C] ">
@@ -51,17 +48,12 @@ const Header = () => {
 
             {/* Auth Buttons - Desktop */}
             <div className="hidden md:flex items-center gap-4">
-              {theme == "light" ? (
-                <Moon
+              <Link to="/my-tickets">
+                <FaCartShopping
                   className="text-white font-bold cursor-pointer"
-                  onClick={toggleTheme}
+                  size={24}
                 />
-              ) : (
-                <SunMoon
-                  className="text-white font-bold cursor-pointer"
-                  onClick={toggleTheme}
-                />
-              )}
+              </Link>
 
               {userStatus ? (
                 <div className="hidden md:flex">

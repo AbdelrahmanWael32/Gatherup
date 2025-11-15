@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
+import Swal from "sweetalert2";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const EventDetails = ({ setSelectedEvent }) => {
   const [event, setEvent] = useState(null);
@@ -49,24 +51,68 @@ const EventDetails = ({ setSelectedEvent }) => {
   if (!event) {
     return <p className="text-center text-gray-500 mt-12">Event not found</p>;
   }
-  const handleBook = (ticket) => {
-    setSelectedEvent((prev) => {
-      const exists = prev.find(
-        (e) => e._id === event._id && e.selectedType === ticket.type
-      );
-      if (exists) return prev;
-      return [
-        ...prev,
-        {
-          ...event,
-          selectedType: ticket.type,
-          selectedPrice: ticket.price,
-          quantity: 1,
-        },
-      ];
-    });
+  const handleBook = async (ticket) => {
+    try {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        Swal.fire({
+          icon: "error",
+          title: "User not logged in",
+          text: "Please log in first!",
+        });
+        return;
+      }
 
-    navigate("/my-tickets");
+      const res = await fetch(`${API_URL}/api/v1/cart`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: userId,
+          eventId: event._id,
+          ticketCategory: ticket.type,
+          amount: 1,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to add to cart");
+
+      setSelectedEvent((prev) => {
+  const exists = prev.find(
+    (e) => e.id === event._id && e.selectedType === ticket.type
+  );
+  if (exists) return prev;
+  return [
+    ...prev,
+    {
+      id: event._id,
+      title: event.title,
+      image: event.image,
+      selectedType: ticket.type,
+      selectedPrice: Number(ticket.price) || 0, // ensure number
+      quantity: 1,
+    },
+  ];
+});
+
+
+      Swal.fire({
+        icon: "success",
+        title: "Added to Cart",
+        text: "Ticket added to your cart successfully!",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+
+      navigate("/my-tickets");
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: err.message,
+      });
+    }
   };
 
   return (
