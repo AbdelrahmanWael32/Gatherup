@@ -89,7 +89,7 @@ const EventDetails = ({ setSelectedEvent }) => {
       title: event.title,
       image: event.image,
       selectedType: ticket.type,
-      selectedPrice: Number(ticket.price) || 0, // ensure number
+      selectedPrice: Number(ticket.price) || 0, 
       quantity: 1,
     },
   ];
