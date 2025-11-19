@@ -28,7 +28,7 @@ const ShowTickets = ({ event }) => {
         {event && event.length > 0 ? (
           event.map((ticket) => (
             <div
-              key={ticket.id}
+              key={ticket._id}
               className="flex flex-col md:flex-row gap-5 items-center justify-between border-b border-gray-200 py-3  hover:bg-gray-50 transition text-center"
             >
               <div className="flex gap-3 justify-center items-center">
@@ -74,7 +74,7 @@ const ShowTickets = ({ event }) => {
 
               <div className="flex flex-wrap xl:flex-nowrap justify-center gap-2">
                 <Link
-                  to={`/admin/ticket-details/${ticket.id}`}
+                  to={`/admin/ticket-details/${ticket._id}`}
                   onClick={() => setSelectedTicket(ticket)}
                   className="bg-brand-primary text-white px-3 py-1 rounded hover:bg-blue-600"
                 >

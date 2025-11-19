@@ -1,51 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 const API_URL = import.meta.env.VITE_API_URL;
-
+import useFetch from "../../hooks/usefetch.js";
 const EventDetails = ({ setSelectedEvent }) => {
-  const [event, setEvent] = useState(null);
-  const [eventError, setEventError] = useState("");
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { _id } = useParams();
-
-  const getEventDetails = () => {
-    try {
-      fetch(`${import.meta.env.VITE_API_URL}/api/v1/events/${_id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.data) {
-            setEvent(data.data);
-          } else if (data.message === "success" && data.data) {
-            setEvent(data.data);
-          } else {
-            setEventError("Event not found!");
-          }
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Failed to fetch event:", err);
-          setEventError("Failed to load event details");
-          setLoading(false);
-        });
-    } catch (e) {
-      setEventError(e.message);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getEventDetails();
-  }, [_id]);
+  const { event, loading } = useFetch(
+    `${import.meta.env.VITE_API_URL}/api/v1/events/${_id}`
+  );
 
   if (loading) {
     return <p className="text-center text-gray-500 mt-12">Loading event...</p>;
-  }
-
-  if (eventError) {
-    return <h1 className="text-red-500 text-xl text-center">{eventError}</h1>;
   }
 
   if (!event) {
@@ -78,23 +45,22 @@ const EventDetails = ({ setSelectedEvent }) => {
       if (!res.ok) throw new Error(data.message || "Failed to add to cart");
 
       setSelectedEvent((prev) => {
-  const exists = prev.find(
-    (e) => e.id === event._id && e.selectedType === ticket.type
-  );
-  if (exists) return prev;
-  return [
-    ...prev,
-    {
-      id: event._id,
-      title: event.title,
-      image: event.image,
-      selectedType: ticket.type,
-      selectedPrice: Number(ticket.price) || 0, 
-      quantity: 1,
-    },
-  ];
-});
-
+        const exists = prev.find(
+          (e) => e.id === event._id && e.selectedType === ticket.type
+        );
+        if (exists) return prev;
+        return [
+          ...prev,
+          {
+            id: event._id,
+            title: event.title,
+            image: event.image,
+            selectedType: ticket.type,
+            selectedPrice: Number(ticket.price) || 0,
+            quantity: 1,
+          },
+        ];
+      });
 
       Swal.fire({
         icon: "success",

@@ -1,22 +1,10 @@
-import { useEffect, useState } from "react";
 import EventCard from "../../Components/eventCard/EventCard";
+import useFetch from "../../hooks/usefetch.js";
 
 const Events = ({ setSelectedEvent }) => {
-  const [event, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/v1/events`)
-      .then((res) => res.json())
-      .then((data) => {
-        setEvents(data.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch events:", err);
-        setLoading(false);
-      });
-  }, []);
+  const { event, loading } = useFetch(
+    `${import.meta.env.VITE_API_URL}/api/v1/events`
+  );
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 
