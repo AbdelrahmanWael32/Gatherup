@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerItems = [
-    { id: 0, name: "Trending", route: "/" },
-    { id: 1, name: "Events", route: "/events" },
+    { id: 0, name: "Events", route: "/events" },
 
-    { id: 2, name: "Tickets", route: "/book-tickets" },
-    { id: 3, name: "About", route: "/about" },
+    { id: 1, name: "Tickets", route: "/book-tickets" },
+    { id: 2, name: "About", route: "/about" },
 
-    { id: 4, name: "Contact", route: "/contact" },
+    { id: 3, name: "Contact", route: "/contact" },
   ];
 
   return (
@@ -20,9 +19,9 @@ const Footer = () => {
           {/* Logo Section */}
           <div className="flex flex-col items-start">
             <div className="text-3xl font-bold mb-2">
-              <span className="text-blue-500">m</span>
+              <span className="text-blue-500">G</span>
             </div>
-            <p className="text-sm text-gray-300">MetaTicket</p>
+            <p className="text-sm text-gray-300">Gatherup</p>
           </div>
 
           {/* Links Section */}
@@ -117,7 +116,7 @@ const Footer = () => {
       <div className="bg-blue-500 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-white text-sm font-medium">
-            © 2025 Metatiket All rights reserved
+            © 2025 Gatherup All rights reserved
           </p>
         </div>
       </div>

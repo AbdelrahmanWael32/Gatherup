@@ -11,13 +11,12 @@ const Header = () => {
   const { userStatus } = useLogin();
 
   const navItems = [
-    { id: 0, name: "Trending", route: "/" },
-    { id: 1, name: "Events", route: "/events" },
+    { id: 0, name: "Events", route: "/events" },
 
-    { id: 2, name: "Tickets", route: "/book-tickets" },
-    { id: 3, name: "About", route: "/about" },
+    { id: 1, name: "Tickets", route: "/book-tickets" },
+    { id: 2, name: "About", route: "/about" },
 
-    { id: 4, name: "Contact", route: "/contact" },
+    { id: 3, name: "Contact", route: "/contact" },
   ];
 
   return (
