@@ -33,9 +33,11 @@ const Category = () => {
         >
           Browse by Category
         </Typography>
-        <Button size="sm" className="bg-brand-primary h-3/4 p-3">
-          <Link to="/events">See more</Link>
-        </Button>
+        <Link to="/events">
+          <Button size="sm" className="bg-brand-primary h-3/4 p-3">
+            SEE MORE
+          </Button>
+        </Link>
       </div>
       <div className="mt-2 border-t border-brand-secondary"></div>
       <div className="flex flex-wrap gap-12 justify-around align-center mt-8">

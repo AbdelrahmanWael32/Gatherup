@@ -40,9 +40,11 @@ const PopularPicks = () => {
         <div className="pointer-events-none absolute bottom-0 left-0 w-full h-2/5 bg-gradient-to-t from-white to-transparent" />
       </div>
       <div className="mt-10 flex justify-center">
-        <Button size="sm" className="bg-brand-primary h-3/4 p-3">
-          <Link to="/events">Show more</Link>
-        </Button>
+        <Link to="/events">
+          <Button size="sm" className="bg-brand-primary h-3/4 p-3">
+            Show More
+          </Button>
+        </Link>
       </div>
     </div>
   );
