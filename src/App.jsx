@@ -4,12 +4,20 @@ import AdminLayout from "./AdminLayout";
 import AuthContext from "./hooks/useLogin";
 import CheckAdmin from "./Components/auth/CheckAdmin";
 import TicketContext from "./Pages/admin-pages/Hooks/adminGetTicket";
+import SearchProvider from "./hooks/useSearch";
 
 const App = () => {
   return (
     <AuthContext>
       <Routes>
-        <Route path="/*" element={<UserLayout />} />
+        <Route
+          path="/*"
+          element={
+            <SearchProvider>
+              <UserLayout />
+            </SearchProvider>
+          }
+        />
         <Route
           path="/admin/*"
           element={

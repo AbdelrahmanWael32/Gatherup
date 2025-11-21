@@ -1,10 +1,32 @@
+import { useEffect, useState } from "react";
 import EventCard from "../../Components/eventCard/EventCard";
 import useFetch from "../../hooks/usefetch.js";
+import { useSearch } from "../../hooks/useSearch.jsx";
 
 const Events = ({ setSelectedEvent }) => {
+  const { selectedCategory, searchQuery } = useSearch();
+  const [filteredEvents, setFilteredEvents] = useState([]);
+
   const { event, loading } = useFetch(
     `${import.meta.env.VITE_API_URL}/api/v1/events`
   );
+
+  useEffect(() => {
+    setFilteredEvents(() => {
+      if (!event) return [];
+      return event.filter((event) => {
+        const isSameSearch =
+          !searchQuery ||
+          event.title?.toLowerCase().includes(searchQuery.toLowerCase());
+
+        const isSameCategory =
+          !selectedCategory ||
+          event.eventCategory?.toLowerCase() === selectedCategory.toLowerCase();
+
+        return isSameSearch && isSameCategory;
+      });
+    });
+  }, [searchQuery, selectedCategory, event]);
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 
@@ -16,16 +38,28 @@ const Events = ({ setSelectedEvent }) => {
         </h1>
       </section>
       <div className="flex flex-col gap-[3rem] justify-center items-center px-4">
-        {event.map((event) => (
-          <EventCard
-            key={event._id}
-            event={event}
-            setSelectedEvent={setSelectedEvent}
-          />
-        ))}
+        {filteredEvents.length ? (
+          filteredEvents.map((event) => (
+            <EventCard
+              key={event._id}
+              event={event}
+              setSelectedEvent={setSelectedEvent}
+            />
+          ))
+        ) : (
+          <p className="text-center mt-10 text-2xl">
+            No Events Found, try searching something different...
+          </p>
+        )}
       </div>
     </div>
   );
 };
+
+function filter(events, searchQuery, category) {
+  console.log(searchQuery, searchQuery);
+
+  return events;
+}
 
 export default Events;
