@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import UserProfile from "../../Pages/login/comp/userprofile";
 import { FaCartShopping } from "react-icons/fa6";
+import { Option, Select } from "@material-tailwind/react";
+import { useSearch } from "../../hooks/useSearch";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-
   const { userStatus } = useLogin();
+  const { setSearchQuery, searchQuery, setSelectedCategory, selectedCategory } =
+    useSearch();
 
   const navItems = [
     { id: 0, name: "Events", route: "/events" },
@@ -123,21 +126,30 @@ const Header = () => {
                 <Search className="absolute left-4 top-3 h-5 w-5 -tran[#04092C]/2 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search by Event, Artist, Venue..."
+                  placeholder="Search by Event name..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full rounded-full border border-gray-300 bg-gray-50 py-3 pl-12 pr-4 text-sm text-gray-700 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 />
               </div>
             </div>
 
-            {/* Zip Code / State */}
+            {/* Categories */}
             <div className="flex-1">
               <div className="relative">
-                <MapPin className="absolute left-4 top-3 h-5 w-5 -tran[#04092C]/2 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Zip code or State"
-                  className="w-full rounded-full border border-gray-300 bg-gray-50 py-3 pl-12 pr-4 text-sm text-gray-700 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                />
+                <Select
+                  label="Category"
+                  color="blue"
+                  value={selectedCategory}
+                  onChange={(val) => setSelectedCategory(val)}
+                  className="w-full"
+                >
+                  <Option value="">None</Option>
+                  <Option value="concert">Concert</Option>
+                  <Option value="sports">Sports</Option>
+                  <Option value="theater">Theater</Option>
+                  <Option value="movies">Movies</Option>
+                </Select>
               </div>
             </div>
 
@@ -154,9 +166,11 @@ const Header = () => {
             </div>
 
             {/* Search Button */}
-            <button className="w-full rounded-full bg-blue-500 px-8 py-3 text-white font-medium hover:bg-blue-600 transition-colors lg:w-auto">
-              Search
-            </button>
+            <Link to="/events">
+              <button className="w-full rounded-full bg-blue-500 px-8 py-3 text-white font-medium hover:bg-blue-600 transition-colors lg:w-auto">
+                Search
+              </button>
+            </Link>
           </div>
         </div>
       </div>
