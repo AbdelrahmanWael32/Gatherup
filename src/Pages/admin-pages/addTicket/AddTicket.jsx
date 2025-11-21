@@ -192,10 +192,10 @@ const AddTicket = () => {
               <option value="Concert">Concert</option>
               <option value="Theater">Theater</option>
               <option value="Sports">Sports</option>
-              <option value="Festival">Movie night</option>
+              <option value="Movie_night">Movie_night</option>
             </select>
             {errors.eventCategory && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="text-red-600 text-sm mt-1">
                 {errors.eventCategory}
               </p>
             )}
@@ -261,20 +261,19 @@ const AddTicket = () => {
             <p className="text-red-500 text-sm -mt-4">{errors.date}</p>
           )}
 
-          
-            <Input
-              type="time"
-              label="Start Time"
-              value={form.startTime}
-              onChange={(e) => handleChange("startTime", e.target.value)}
-            />
-            <Input
-              type="time"
-              label="End Time"
-              value={form.endTime}
-              onChange={(e) => handleChange("endTime", e.target.value)}
-            />
-         
+          <Input
+            type="time"
+            label="Start Time"
+            value={form.startTime}
+            onChange={(e) => handleChange("startTime", e.target.value)}
+          />
+          <Input
+            type="time"
+            label="End Time"
+            value={form.endTime}
+            onChange={(e) => handleChange("endTime", e.target.value)}
+          />
+
           {errors.time && (
             <p className="text-red-500 text-sm -mt-4">{errors.time}</p>
           )}
