@@ -34,7 +34,7 @@ const Category = () => {
           Browse by Category
         </Typography>
         <Link to="/events">
-          <Button size="sm" className="bg-brand-primary h-3/4 p-3">
+          <Button size="sm" className="bg-brand-primary p-3">
             SEE MORE
           </Button>
         </Link>
