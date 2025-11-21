@@ -56,10 +56,4 @@ const Events = ({ setSelectedEvent }) => {
   );
 };
 
-function filter(events, searchQuery, category) {
-  console.log(searchQuery, searchQuery);
-
-  return events;
-}
-
 export default Events;
