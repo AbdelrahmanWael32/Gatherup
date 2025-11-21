@@ -18,7 +18,7 @@ const Category = () => {
       img: "https://images.unsplash.com/photo-1615414047026-802692414b79?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169",
     },
     {
-      title: "Movies",
+      title: "Movie_night",
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqBQBC-MSrcNYSRUc3fTL_HRuO0CvHjcdcA&s",
     },
   ]);

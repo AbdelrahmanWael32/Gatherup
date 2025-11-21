@@ -23,7 +23,7 @@ const CategoryCard = ({ category: { title, img } }) => {
             onClick={() => setSelectedCategory(title.toLowerCase())}
             className="bg-brand-dark"
           >
-            {title}
+            {title.replace("_", " ")}
           </Button>
         </Link>
       </CardFooter>
