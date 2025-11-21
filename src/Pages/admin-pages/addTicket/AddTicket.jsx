@@ -195,7 +195,7 @@ const AddTicket = () => {
               <option value="Movie_night">Movie_night</option>
             </select>
             {errors.eventCategory && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="text-red-600 text-sm mt-1">
                 {errors.eventCategory}
               </p>
             )}
