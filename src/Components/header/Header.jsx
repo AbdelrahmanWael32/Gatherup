@@ -148,7 +148,7 @@ const Header = () => {
                   <Option value="concert">Concert</Option>
                   <Option value="sports">Sports</Option>
                   <Option value="theater">Theater</Option>
-                  <Option value="parks">Parks</Option>
+                  <Option value="movies">Movies</Option>
                 </Select>
               </div>
             </div>
