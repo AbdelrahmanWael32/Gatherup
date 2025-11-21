@@ -1,14 +1,64 @@
 import { Link, useNavigate } from "react-router-dom";
 import { adminGetTicket } from "../Hooks/adminGetTicket";
-import { useEffect } from "react";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
-const ShowTickets = ({ event }) => {
+const ShowTickets = ({ event, onTicketDeleted }) => {
   const navigate = useNavigate();
+  const { setSelectedTicket } = adminGetTicket();
 
-  const { setSelectedTicket, setAllTickets } = adminGetTicket();
-  useEffect(() => {
-    setAllTickets(event);
-  }, [event]);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [localEvents, setLocalEvents] = useState(event || []);
+
+  const handleDelete = async (ticketId, ticketTitle) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `Delete "${ticketTitle}"?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "rgb(244 67 54 / var(--tw-bg-opacity, 1))",
+      cancelButtonColor: "#2c9cf0",
+      confirmButtonText: "delete",
+    });
+
+    if (!result.isConfirmed) return;
+
+    setIsDeleting(true);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/v1/events/${ticketId}`,
+        { method: "DELETE" }
+      );
+
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
+
+      const updated = localEvents.filter((t) => t._id !== ticketId);
+      setLocalEvents(updated);
+
+      onTicketDeleted?.(ticketId);
+
+      await Swal.fire({
+        title: "Deleted!",
+        text: "Ticket deleted successfully.",
+        icon: "success",
+      });
+    } catch (error) {
+      await Swal.fire({
+        title: "Error!",
+        text: error.message,
+        icon: "error",
+      });
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const handleEdit = (ticket) => {
+    setSelectedTicket(ticket);
+    navigate(`/admin/edit-ticket/${ticket._id}`);
+  };
 
   return (
     <div className="min-h-screen">
@@ -86,8 +136,12 @@ const ShowTickets = ({ event }) => {
                 >
                   Edit
                 </Link>
-                <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                  Delete
+                <button
+                  onClick={() => handleDelete(ticket._id, ticket.title)}
+                  disabled={isDeleting}
+                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 disabled:bg-red-300 disabled:cursor-not-allowed"
+                >
+                  {isDeleting ? "Deleting..." : "Delete"}
                 </button>
               </div>
             </div>
