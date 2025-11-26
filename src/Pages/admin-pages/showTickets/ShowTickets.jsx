@@ -81,11 +81,11 @@ const ShowTickets = ({ event, onTicketDeleted }) => {
               key={ticket._id}
               className="flex flex-col md:flex-row gap-5 items-center justify-between border-b border-gray-200 py-3  hover:bg-gray-50 transition text-center"
             >
-              <div className="flex gap-3 justify-center items-center">
+              <div className="flex gap-3 items-center flex-1">
                 <div>
                   <img
                     src={ticket.image}
-                    className="w-12 h-12 rounded-lg object-cover"
+                    className="w-12 min-w-12 h-12 rounded-lg object-cover"
                   />
                 </div>
                 <div>
@@ -99,7 +99,7 @@ const ShowTickets = ({ event, onTicketDeleted }) => {
                 </div>
               </div>
 
-              <div className="flex gap-[5rem]">
+              <div className="flex gap-[2rem] flex-1 justify-center">
                 <div className="text-brand-secondary ">
                   {ticket.ticketCategories.map((Categories, index) => (
                     <div
@@ -122,7 +122,7 @@ const ShowTickets = ({ event, onTicketDeleted }) => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap xl:flex-nowrap justify-center gap-2">
+              <div className="flex flex-wrap xl:flex-nowrap justify-center gap-2 flex-1">
                 <Link
                   to={`/admin/ticket-details/${ticket._id}`}
                   onClick={() => setSelectedTicket(ticket)}

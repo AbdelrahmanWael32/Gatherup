@@ -87,8 +87,8 @@ const EventDetails = ({ setSelectedEvent }) => {
         {event.title}
       </h1>
 
-      <div className="flex flex-col-reverse md:flex-row md:gap-[2rem]">
-        <div>
+      <div className="flex flex-col-reverse md:flex-row md:gap-[2rem] justify-between">
+        <div className="md:w-1/2">
           <p className="text-base md:text-lg text-brand-secondary whitespace-pre-line">
             {event.description}
           </p>
@@ -125,11 +125,13 @@ const EventDetails = ({ setSelectedEvent }) => {
               ))}
           </div>
         </div>
-        <img
-          src={event.image}
-          alt={event.title}
-          className="w-[90%] md:w-[50%] max-h-[350px] object-cover rounded-2xl mb-6 shadow-lg mx-auto"
-        />
+        <div className="md:w-1/2">
+          <img
+            src={event.image}
+            alt={event.title}
+            className="h-[350px] object-cover rounded-2xl mb-6 shadow-lg mx-auto"
+          />
+        </div>
       </div>
       <div className="flex justify-end">
         <Button
