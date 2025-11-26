@@ -20,8 +20,8 @@ function Login({ setIsLoggedIn }) {
     password: "",
   });
 
-  const [message, setMessage] = useState(""); // ✅ حالة للرسالة
-  const [messageType, setMessageType] = useState(""); // success أو error
+  const [message, setMessage] = useState(""); 
+   const [messageType, setMessageType] = useState(""); 
 
   const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ function Login({ setIsLoggedIn }) {
     console.log("Response from backend:", data);
 
     if (res.ok) {
-      // ✅ بدل الـ alert
+     
       setMessage("Login successful!");
       setMessageType("success");
 
@@ -62,8 +62,7 @@ function Login({ setIsLoggedIn }) {
       updateUserInfo("User");
       setIsLoggedIn(true);
 
-      // يمشي لصفحة الرئيسية بعد ثانية صغيرة
-      setTimeout(() => {
+       setTimeout(() => {
         setMessage("");
         navigate("/");
       }, 1500);
@@ -87,7 +86,6 @@ function Login({ setIsLoggedIn }) {
         </CardHeader>
 
         <CardBody className="flex flex-col gap-4">
-          {/* ✅ الرسالة تظهر هنا */}
           {message && (
             <div
               className={`text-center p-2 rounded-md font-medium ${

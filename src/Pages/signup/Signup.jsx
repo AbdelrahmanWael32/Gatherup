@@ -48,10 +48,17 @@ function SignUpPage() {
     if (reg.phonenumber && !phoneExp.test(reg.phonenumber)) {
       newErrors.push("Please enter a valid Egyptian phone number");
     }
+if (!reg.password || reg.password.length < 4) {
+ newErrors.push("password souldn't be  less than 4 characters");
+}
 
-    if (reg.password !== reg.confirmPassword) {
+   if (reg.password !== reg.confirmPassword) {
       newErrors.push("Passwords do not match");
     }
+
+if (!reg.password || !/[0-9]/.test(reg.password) || !/[a-zA-Z]/.test(reg.password)) {
+ newErrors.push("Password is too weak");
+}
 
     if (newErrors.length > 0) {
       setErrors(newErrors);

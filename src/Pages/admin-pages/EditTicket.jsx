@@ -1,92 +1,57 @@
+import { Card, Input, Textarea, Button, Typography } from "@material-tailwind/react";
 
-import { Input, Button, Typography } from "@material-tailwind/react";
-
-function EditTickets() {
+export default function EditTicketDesign() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-<div className="w-full max-w-5xl rounded-2xl shadow-lg p-8">
+    <div className="flex flex-col items-center justify-center p-8 min-h-screen bg-gray-50">
+      <Typography variant="h4" color="blue-gray" className="font-bold mb-4">
+        Edit Ticket
+      </Typography>
 
+      <Card color="transparent" shadow={false} className="p-6 w-full max-w-lg">
+        <form className="flex flex-col gap-6">
+          <Input label="Event Title" placeholder="Enter ticket title" />
 
-        <Typography variant="h5" className="text-center  text-brand-dark mb-6 font-semibold">
-  Edit this Tickets
-        </Typography>
-
-        <form className="space-y-6">
-     
           <div>
-            <Typography variant="small" className="mb-1  text-brand-dark ">
-              ticket title
-            </Typography>
-            <Input type="text "
-             placeholder="enter ticket title" />
+            <label className="text-sm text-gray-600 mb-1 block">Event Category</label>
+            <select className="w-full border rounded-md p-2 border-gray-300">
+              <option value="">Select event category</option>
+              <option value="Concert">Concert</option>
+              <option value="Theater">Theater</option>
+              <option value="Sports">Sports</option>
+              <option value="Movie_night">Movie night</option>
+            </select>
           </div>
 
-
-           <div>
-            <Typography variant="small" className="text-brand-dark mb-1">
-             ticket price
-            </Typography>
-            <Input type="number" 
-             placeholder=" enter ticket price"/>
-          </div>
-
-
-
-      
           <div>
-            <Typography variant="small" className="text-brand-dark mb-1">
-             ticket cateogry
-            </Typography>
-            <Input type="text" 
-             placeholder="enter ticket category"/>
+            <label className="text-sm text-gray-600 mb-1 block">Ticket Categories</label>
+            <div className="flex gap-2 mb-2 items-center">
+              <select className="border p-2 rounded-md">
+                <option value="">Select type</option>
+                <option value="Standard">Standard</option>
+                <option value="Premium">Premium</option>
+                <option value="VIP">VIP</option>
+              </select>
+              <Input type="number" placeholder="Price" className="w-24" />
+              <Button className="bg-brand-dark">Remove</Button>
+            </div>
+            <Button className="bg-blue-500 w-full mt-2">Add Ticket Category</Button>
           </div>
 
+          <Input type="date" label="Event Date" />
+          <div className="flex gap-4">
+            <Input type="time" label="Start Time" className="flex-1" />
+            <Input type="time" label="End Time" className="flex-1" />
+          </div>
+
+          <Input label="Location" placeholder="Enter location" />
+          <Textarea label="Description" placeholder="Enter description" />
+          <Input label="Image URL" placeholder="Enter image URL" />
          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Typography variant="small" className="mb-1  text-brand-dark">
-       description
-              </Typography>
-              <Input type="text" 
-              placeholder="enter description"/>
-            </div>
-
-
- 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Typography variant="small" className="mb-1  text-brand-dark">
-       event type 
-              </Typography>
-              <Input type="text" 
-              placeholder="enter price "/>
-            </div>
-</div>
-
-
-
-
-
-     
-          <div>
-            <Typography variant="small" className="mb-0  text-brand-dark">
-            event date
-            </Typography>
-            <Input type="date"
-            placeholder="MM/DD/YY"/>
-          </div>
-          </div>
-
-
-        
-
-          <Button fullWidth className="bg-brand-dark text-white mt-4">
-edit
+          <Button className="bg-brand-primary mt-4" fullWidth>
+            Edit Ticket
           </Button>
         </form>
-      </div>
+      </Card>
     </div>
   );
 }
-
-export default EditTickets;

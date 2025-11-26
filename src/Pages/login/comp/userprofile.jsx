@@ -41,7 +41,7 @@ function UserProfile() {
   const handleMenuClick = (label) => {
     closeMenu();
     if (label === "My Profile") navigate("/profile");
-    else if (label === "Sign Out") logOut();
+    else if (label === "log Out") logOut();
     else if (label === "Admin") navigate("/admin");
   };
 
@@ -50,21 +50,16 @@ function UserProfile() {
       label: "My Profile",
       icon: UserCircleIcon,
     },
+    /*
     {
       label: "Edit Profile",
       icon: Cog6ToothIcon,
       GripHorizontalIcon,
     },
+*/
+   
     {
-      label: "Inbox",
-      icon: InboxArrowDownIcon,
-    },
-    {
-      label: "Help",
-      icon: LifebuoyIcon,
-    },
-    {
-      label: "Sign Out",
+      label: "log Out",
       icon: PowerIcon,
     },
   ];
@@ -81,15 +76,16 @@ function UserProfile() {
           color="blue-gray"
           className="flex items-center rounded-full p-0"
         >
-          <Avatar
-            variant="circular"
-            size="md"
-            alt="tania andrew"
-            withBorder={true}
-            color="blue-gray"
-            className=" p-0.5"
-            src="https://docs.material-tailwind.com/img/face-2.jpg"
-          />
+         <Avatar
+  variant="circular"
+  size="sm" 
+  alt="User Avatar"
+  withBorder={true}
+  color="blue-gray"
+  className="p-0.5 block"
+  src="https://docs.material-tailwind.com/img/face-2.jpg"
+/>
+
         </Button>
       </MenuHandler>
       <MenuList className="p-1">

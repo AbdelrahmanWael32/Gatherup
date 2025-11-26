@@ -5,7 +5,6 @@ import AuthContext from "./hooks/useLogin";
 import CheckAdmin from "./Components/auth/CheckAdmin";
 import TicketContext from "./Pages/admin-pages/Hooks/adminGetTicket";
 import SearchProvider from "./hooks/useSearch";
-
 const App = () => {
   return (
     <AuthContext>
@@ -16,6 +15,7 @@ const App = () => {
             <SearchProvider>
               <UserLayout />
             </SearchProvider>
+          
           }
         />
         <Route
