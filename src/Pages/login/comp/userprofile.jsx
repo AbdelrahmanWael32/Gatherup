@@ -41,8 +41,9 @@ function UserProfile() {
   const handleMenuClick = (label) => {
     closeMenu();
     if (label === "My Profile") navigate("/profile");
+     else if (label === "Admin") navigate("/admin");
     else if (label === "log Out") logOut();
-    else if (label === "Admin") navigate("/admin");
+
   };
 
   const profileMenuItems = [
@@ -57,15 +58,21 @@ function UserProfile() {
       GripHorizontalIcon,
     },
 */
-   
-    {
+
+ { label: "Admin", 
+  icon: ShieldCheckIcon },
+ 
+
+       {
       label: "log Out",
       icon: PowerIcon,
     },
+
+
   ];
 
   if (userInfo === "admin" || role == "admin") {
-    profileMenuItems.splice(2, 0, { label: "Admin", icon: ShieldCheckIcon });
+    profileMenuItems.splice(2, 0);
   }
 
   return (

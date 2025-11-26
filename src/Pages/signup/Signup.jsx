@@ -57,7 +57,7 @@ if (!reg.password || reg.password.length < 4) {
     }
 
 if (!reg.password || !/[0-9]/.test(reg.password) || !/[a-zA-Z]/.test(reg.password)) {
- newErrors.push("Password is too weak");
+ newErrors.push("Password is weak it should be combination of expressions  ");
 }
 
     if (newErrors.length > 0) {
