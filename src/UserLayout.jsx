@@ -14,6 +14,7 @@ import NotFound from "./Pages/notFound/NotFound";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import CheckLogin from "./Components/auth/CheckLogin";
+import Edit_profile from "./Pages/edit_profile/edit_profile";
 
 const UserLayout = () => {
   const [selectedEvent, setSelectedEvent] = useState([]);
@@ -33,6 +34,7 @@ const UserLayout = () => {
             </CheckLogin>
           }
         />
+        <Route path="edit-profile" element={<Edit_profile />} />
         <Route path="about" element={<About />} />
         <Route path="book-tickets" element={<BookTickets />} />
         <Route path="contact" element={<Contact />} />
