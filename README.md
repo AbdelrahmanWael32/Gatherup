@@ -4,7 +4,6 @@
 2. Basmala Tarek Fathi Ali
 3. Maryam Mohamed Hussein Abdoun
 4. Jana Sobih Abd Elslam Sobih
-5. Amir Yasser Shaker Shokry
 
 # Name
 
