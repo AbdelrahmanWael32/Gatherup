@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-function Edit_profile() {
+function EditProfile() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
@@ -326,4 +326,4 @@ function Edit_profile() {
   );
 }
 
-export default Edit_profile;
+export default EditProfile;
