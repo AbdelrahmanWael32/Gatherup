@@ -14,7 +14,7 @@ import NotFound from "./Pages/notFound/NotFound";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import CheckLogin from "./Components/auth/CheckLogin";
-import Edit_profile from "./Pages/edit_profile/edit_profile";
+import Edit_profile from "./Pages/edit_profile/ُEdit_profile";
 
 const UserLayout = () => {
   const [selectedEvent, setSelectedEvent] = useState([]);
