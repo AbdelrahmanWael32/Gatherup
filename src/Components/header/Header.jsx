@@ -22,13 +22,10 @@ const Header = () => {
 
   return (
     <div className="bg-[#04092C]">
-
       {/* NAV BAR */}
       <nav className="sticky w-full top-0 z-50 bg-[#04092C] border-b border-[#04092C] shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
           <div className="flex items-center justify-between h-16">
-
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link to="/" className="text-2xl font-bold text-white">
@@ -51,7 +48,6 @@ const Header = () => {
 
             {/* Right Side — Cart + Auth Buttons */}
             <div className="flex items-center gap-4">
-
               {/* Cart Icon */}
               <Link to="/my-tickets">
                 <FaCartShopping
@@ -61,8 +57,8 @@ const Header = () => {
               </Link>
 
               {/* Auth Buttons (Hide only when mobile menu is open) */}
-              {!openNav && (
-                userStatus ? (
+              {!openNav &&
+                (userStatus ? (
                   <UserProfile />
                 ) : (
                   <>
@@ -77,9 +73,7 @@ const Header = () => {
                       </button>
                     </Link>
                   </>
-                )
-              )}
-
+                ))}
             </div>
 
             {/* Mobile Menu Button — ALWAYS VISIBLE ON MOBILE */}
@@ -89,14 +83,12 @@ const Header = () => {
             >
               {openNav ? <X size={24} /> : <Menu size={24} />}
             </button>
-
           </div>
 
           {/* Mobile Navigation */}
           {openNav && (
             <div className="md:hidden pb-4 border-t border-[#04092C]">
               <div className="flex flex-col gap-3 py-4">
-
                 {navItems.map(({ id, name, route }) => (
                   <Link
                     key={id}
@@ -122,11 +114,9 @@ const Header = () => {
                     </Link>
                   </div>
                 )}
-
               </div>
             </div>
           )}
-
         </div>
       </nav>
 
@@ -134,7 +124,6 @@ const Header = () => {
       <div className="px-4 py-8 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-4 rounded-3xl bg-white p-6 shadow-xl lg:flex-row lg:items-center lg:gap-4">
-
             {/* Event Search Input */}
             <div className="flex-1">
               <div className="relative">
@@ -166,29 +155,15 @@ const Header = () => {
               </Select>
             </div>
 
-            {/* Date */}
-            <div className="flex-1">
-              <div className="relative">
-                <Calendar className="absolute left-4 top-3 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Date"
-                  className="w-full rounded-full border border-gray-300 bg-gray-50 py-3 pl-12 pr-4 text-sm text-gray-700 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                />
-              </div>
-            </div>
-
             {/* Search Button */}
             <Link to="/events">
               <button className="w-full rounded-full bg-blue-500 px-8 py-3 text-white font-medium hover:bg-blue-600 transition-colors lg:w-auto">
                 Search
               </button>
             </Link>
-
           </div>
         </div>
       </div>
-
     </div>
   );
 };
