@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Calendar, Menu, X } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import UserProfile from "../../Pages/login/comp/userprofile";
@@ -15,7 +15,7 @@ const Header = () => {
 
   const navItems = [
     { id: 0, name: "Events", route: "/events" },
-    { id: 1, name: "Tickets", route: "/book-tickets" },
+    // { id: 1, name: "Tickets", route: "/book-tickets" },
     { id: 2, name: "About", route: "/about" },
     { id: 3, name: "Contact", route: "/contact" },
   ];
@@ -56,33 +56,32 @@ const Header = () => {
                 />
               </Link>
 
-              {/* Auth Buttons (Hide only when mobile menu is open) */}
-              {!openNav &&
-                (userStatus ? (
-                  <UserProfile />
-                ) : (
-                  <>
-                    <Link to="/sign-up">
-                      <button className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
-                        Sign Up
-                      </button>
-                    </Link>
-                    <Link to="/login">
-                      <button className="px-6 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors">
-                        Login
-                      </button>
-                    </Link>
-                  </>
-                ))}
-            </div>
+              {/* Auth Buttons */}
+              {!userStatus ? (
+                <div className="hidden md:flex items-center gap-4">
+                  <Link to="/sign-up">
+                    <button className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
+                      Sign Up
+                    </button>
+                  </Link>
+                  <Link to="/login">
+                    <button className="px-6 py-2 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#04092C] transition-colors">
+                      Login
+                    </button>
+                  </Link>
+                </div>
+              ) : (
+                <UserProfile />
+              )}
 
-            {/* Mobile Menu Button — ALWAYS VISIBLE ON MOBILE */}
-            <button
-              onClick={() => setOpenNav(!openNav)}
-              className="md:hidden text-white p-2"
-            >
-              {openNav ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              {/* Mobile Menu Button — ALWAYS VISIBLE ON MOBILE */}
+              <button
+                onClick={() => setOpenNav(!openNav)}
+                className="md:hidden text-white p-2"
+              >
+                {openNav ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
