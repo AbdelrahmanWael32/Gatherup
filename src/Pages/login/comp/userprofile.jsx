@@ -23,8 +23,13 @@ import { jwtDecode } from "jwt-decode";
 
 function UserProfile() {
   const navigate = useNavigate();
-  const { userInfo, updateUserInfo, updateUserStatus } = useLogin();
-  const token = jwtDecode(localStorage.token);
+  const {
+    userInfo,
+    updateUserInfo,
+    updateUserStatus,
+    token: coded_token,
+  } = useLogin();
+  const token = jwtDecode(coded_token);
   const { role } = token;
   const logOut = () => {
     updateUserInfo(null);

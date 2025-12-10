@@ -27,7 +27,8 @@ function Profile() {
   const getUserInfoFromToken = () => {
     try {
       const token = localStorage.getItem("token");
-      if (!token) return { id: null, email: "", username: "User", phonenumber: "" };
+      if (!token)
+        return { id: null, email: "", username: "User", phonenumber: "" };
 
       const payload = JSON.parse(window.atob(token.split(".")[1]));
 
@@ -45,8 +46,12 @@ function Profile() {
 
   const fetchUserProfile = async () => {
     const token = localStorage.getItem("token");
-    const { id: USER_ID, email: tokenEmail, username: tokenUsername, phonenumber: tokenPhone } =
-      getUserInfoFromToken();
+    const {
+      id: USER_ID,
+      email: tokenEmail,
+      username: tokenUsername,
+      phonenumber: tokenPhone,
+    } = getUserInfoFromToken();
 
     if (!USER_ID) {
       setMessage("User ID not found. Please login again.");
@@ -71,7 +76,8 @@ function Profile() {
           ...data.data,
           email: data.data.email || tokenEmail,
           username: data.data.username || tokenUsername,
-          phonenumber: data.data.phonenumber || data.data.phone || tokenPhone || "",
+          phonenumber:
+            data.data.phonenumber || data.data.phone || tokenPhone || "",
         });
       } else {
         setMessage(data.message || "Failed to fetch user data.");
@@ -116,7 +122,9 @@ function Profile() {
           setUser(null);
           localStorage.removeItem("token");
           localStorage.removeItem("userId");
-          navigate("/signup");
+          sessionStorage.hul = false;
+          sessionStorage.lui = false;
+          navigate("/sign-up");
         }, 1400);
       } else {
         setMessage(data.message || "Failed to delete your account.");
@@ -219,7 +227,10 @@ function Profile() {
                 </div>
               ))
             ) : (
-              <Typography color="gray" className="col-span-full text-center py-4">
+              <Typography
+                color="gray"
+                className="col-span-full text-center py-4"
+              >
                 You have no recent bookings.
               </Typography>
             )}

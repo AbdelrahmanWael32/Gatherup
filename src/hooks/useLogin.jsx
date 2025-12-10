@@ -3,9 +3,8 @@ import { createContext, useContext, useState } from "react";
 const GetAuth = createContext();
 
 const AuthContext = ({ children }) => {
-  const [userStatus, setUserStatus] = useState(
-    sessionStorage.hul == "true" ? true : false
-  );
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [userStatus, setUserStatus] = useState(token ? true : false);
   const [userInfo, setUserInfo] = useState(
     sessionStorage.lui ? sessionStorage.lui : null
   );
@@ -20,9 +19,21 @@ const AuthContext = ({ children }) => {
     setUserStatus(updatedInfo);
   };
 
+  const updateToken = (token) => {
+    sessionStorage.token = token;
+    setToken(token);
+  };
+
   return (
     <GetAuth.Provider
-      value={{ userStatus, userInfo, updateUserInfo, updateUserStatus }}
+      value={{
+        userStatus,
+        userInfo,
+        token,
+        updateUserInfo,
+        updateUserStatus,
+        updateToken,
+      }}
     >
       {children}
     </GetAuth.Provider>
