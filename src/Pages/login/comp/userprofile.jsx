@@ -65,8 +65,8 @@ function UserProfile() {
     },
   ];
 
-  if (userInfo === "admin" || role == "admin") {
-    profileMenuItems.splice(2, 0);
+  if (role != "admin") {
+    profileMenuItems.splice(2, 1);
   }
 
   return (
